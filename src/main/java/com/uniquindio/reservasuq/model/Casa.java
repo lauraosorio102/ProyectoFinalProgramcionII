@@ -1,4 +1,15 @@
 package com.uniquindio.reservasuq.model;
 
-public class Casa {
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+
+public class Casa extends Alojamiento {
+
+    private double costoAseo;
+
+
 }

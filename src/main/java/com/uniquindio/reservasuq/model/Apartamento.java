@@ -1,4 +1,13 @@
 package com.uniquindio.reservasuq.model;
 
-public class Apartamento {
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+
+public class Apartamento extends Alojamiento {
+
+    private double costoMantenimiento;
 }
