@@ -1,4 +1,4 @@
-package com.uniquindio.reservasuq.controllers;
+package co.edu.uniquindio.reservasuq.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

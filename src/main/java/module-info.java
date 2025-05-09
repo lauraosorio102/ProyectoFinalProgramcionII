@@ -4,8 +4,8 @@ module com.uniquindio.reservasuq {
     requires static lombok;
 
 
-    opens com.uniquindio.reservasuq to javafx.fxml;
-    exports com.uniquindio.reservasuq;
-    exports com.uniquindio.reservasuq.controllers;
-    opens com.uniquindio.reservasuq.controllers to javafx.fxml;
+    opens co.edu.uniquindio.reservasuq to javafx.fxml;
+    exports co.edu.uniquindio.reservasuq;
+    exports co.edu.uniquindio.reservasuq.controllers;
+    opens co.edu.uniquindio.reservasuq.controllers to javafx.fxml;
 }

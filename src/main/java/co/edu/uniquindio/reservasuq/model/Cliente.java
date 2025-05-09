@@ -1,4 +1,4 @@
-package com.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model;
 
 public class Cliente extends Usuario{
 

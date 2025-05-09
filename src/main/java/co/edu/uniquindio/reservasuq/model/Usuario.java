@@ -1,4 +1,4 @@
-package com.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model;
 
 import lombok.*;
 
@@ -6,7 +6,6 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-
 public abstract class Usuario {
 
     private String nombre;

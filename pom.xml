@@ -62,10 +62,9 @@
                 <version>0.0.8</version>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.uniquindio.reservasuq/com.uniquindio.reservasuq.ReservasUqApplication</mainClass>
+                            <mainClass>com.uniquindio.reservasuq/co.edu.uniquindio.reservasuq.ReservasUqApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

@@ -1,4 +1,4 @@
-package com.uniquindio.reservasuq;
+package co.edu.uniquindio.reservasuq;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
