@@ -14,5 +14,6 @@ public class Oferta {
     private String nombre;
     private ArrayList<LocalDate> fechas;
     private int huespedes;
+    private int diasReserva;
     private float valorDescuento;
 }

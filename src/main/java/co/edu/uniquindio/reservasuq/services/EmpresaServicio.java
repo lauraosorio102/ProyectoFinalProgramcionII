@@ -25,16 +25,16 @@ public class EmpresaServicio implements IEmpresaServicio {
         usuarioServicio.agregarCliente(correo,contrasenia,cedula,nombre,telefono);
     }
 
-    public void iniciarSesion(String correo, String contrasenia) throws Exception {
-        usuarioServicio.iniciarSesion(correo,contrasenia);
+    public Usuario iniciarSesion(String correo, String contrasenia) throws Exception {
+        return usuarioServicio.iniciarSesion(correo,contrasenia);
     }
 
     public ArrayList<Usuario> listarUsuarios() {
         return usuarioServicio.listarUsuarios();
     }
 
-    public void eliminarCliente(Cliente cliente) throws Exception {
-        usuarioServicio.eliminarCliente(cliente);
+    public void eliminarCliente(Cliente cliente,String correo,String contrasenia) throws Exception {
+        usuarioServicio.eliminarCliente(cliente, correo, contrasenia);
     }
 
     public void editarCliente(Cliente cliente, String nombre, String telefono) throws Exception {
@@ -43,6 +43,10 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public Usuario buscarCliente(String cedula) {
         return usuarioServicio.buscarCliente(cedula);
+    }
+
+    public void cambiarContrasenia(String contraseniavieja,String contraseniaviejavalidacion, String contrasenianueva, Usuario usuario) throws Exception {
+        usuarioServicio.cambiarContrasenia(contraseniavieja,contraseniaviejavalidacion,contrasenianueva,usuario);
     }
 
     public void agregarCasa(String nombre, String descripcion, Ciudad ciudad, Image foto, float precioporNoche, int capacidadHuespedes, float costoAdicional) throws Exception {
@@ -73,8 +77,8 @@ public class EmpresaServicio implements IEmpresaServicio {
         alojamientoServicio.eliminarAlojamiento(alojamiento);
     }
 
-    public void agregarOferta(String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, float valorDescuento) throws Exception {
-        ofertasServicio.agregarOferta(nombre,fechainicial,diasOferta,cantidadhuespedes,valorDescuento);
+    public void agregarOferta(String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, float valorDescuento, int diasReserva) throws Exception {
+        ofertasServicio.agregarOferta(nombre,fechainicial,diasOferta,cantidadhuespedes,valorDescuento,diasReserva);
     }
 
     public void eliminarOferta(Oferta oferta) throws Exception {
@@ -89,11 +93,11 @@ public class EmpresaServicio implements IEmpresaServicio {
         return ofertasServicio.listarOfertas();
     }
 
-    public void editarOferta(Oferta oferta, String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, float valorDescuento) throws Exception {
-        return ofertasServicio.editarOferta(oferta,nombre,fechainicial,diasOferta,cantidadhuespedes,valorDescuento);
+    public void editarOferta(Oferta oferta, String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, float valorDescuento,int diasReserva) throws Exception {
+        return ofertasServicio.editarOferta(oferta,nombre,fechainicial,diasOferta,cantidadhuespedes,valorDescuento,diasReserva);
     }
 
-    public void agregarReserva(Alojamiento alojamiento, int numeroHuespedes, LocalDate fechainicial, int diasReserva) throws Exception {
+    public void agregarReserva(Alojamiento alojamiento,Cliente cliente, int numeroHuespedes, LocalDate fechainicial, int diasReserva) throws Exception {
         reservaServicio.agregarReserva(alojamiento,numeroHuespedes,fechainicial,diasReserva,listarOfertas());
     }
 
@@ -105,8 +109,16 @@ public class EmpresaServicio implements IEmpresaServicio {
         return reservaServicio.listarReservas();
     }
 
+    public ArrayList<Reserva> listarReservas(Usuario usuario) {
+        return reservaServicio.listarReservas(usuario);
+    }
+
     public void editarReserva(Reserva reserva, Alojamiento alojamiento, int numeroHuespedes, LocalDate fechainicial, int diasReserva) throws Exception {
         reservaServicio.editarReserva(reserva,alojamiento,numeroHuespedes,fechainicial,diasReserva,listarOfertas());
+    }
+
+    public int contarNumeroReservas(Alojamiento alojamiento) {
+        return reservaServicio.contrarNumeroReservas(alojamiento);
     }
 
     public void agregarResenia(String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {
@@ -117,5 +129,9 @@ public class EmpresaServicio implements IEmpresaServicio {
     public void eliminarResenia(Resenia resenia) throws Exception {
         usuarioServicio.eliminarResenia(resenia);
         alojamientoServicio.eliminarResenia(resenia);
+    }
+
+    public void RecargarBilletera(Cliente cliente, String valorRecarga) throws Exception {
+        cliente.recargarBilletera(valorRecarga);
     }
 }
