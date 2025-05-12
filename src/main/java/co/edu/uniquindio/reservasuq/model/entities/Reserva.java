@@ -1,5 +1,6 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.entities;
 
+import co.edu.uniquindio.reservasuq.model.factory.Alojamiento;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +18,5 @@ public class Reserva {
     private int numeroHuespedes;
     private ArrayList<LocalDate> diasReserva;
     private float Precio;
+    private Factura factura;
 }

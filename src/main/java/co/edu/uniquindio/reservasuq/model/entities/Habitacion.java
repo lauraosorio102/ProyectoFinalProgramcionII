@@ -1,4 +1,4 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.entities;
 
 import javafx.scene.image.Image;
 import lombok.Builder;

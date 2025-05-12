@@ -1,4 +1,4 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.entities;
 
 import co.edu.uniquindio.reservasuq.utils.EnvioEmail;
 import lombok.Getter;

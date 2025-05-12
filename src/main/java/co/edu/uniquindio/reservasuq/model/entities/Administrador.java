@@ -1,4 +1,4 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,7 @@ public class Administrador extends Usuario {
 
     private Administrador(String Correo,String Contrasenia) {
         super(Correo, Contrasenia);
+        this.setEstado(true);
     }
 
     public static Administrador getInstancia(String correo,String contrasenia) {

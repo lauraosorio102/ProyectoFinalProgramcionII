@@ -1,5 +1,6 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.factory;
 
+import co.edu.uniquindio.reservasuq.model.entities.Ciudad;
 import javafx.scene.image.Image;
 import lombok.Getter;
 import lombok.Setter;

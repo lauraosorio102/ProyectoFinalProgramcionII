@@ -1,4 +1,4 @@
-package co.edu.uniquindio.reservasuq.model;
+package co.edu.uniquindio.reservasuq.model.entities;
 
 import lombok.Builder;
 import lombok.Getter;
