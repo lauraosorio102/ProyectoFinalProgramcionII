@@ -88,7 +88,7 @@ public class ReservaServicio {
 
     public void eliminarReserva(Reserva reserva) throws Exception {
         if (reserva == null) throw new Exception("Seleccione una reserva para cancelarla");
-        listarReservas().remove(reserva);
+        reservaRepository.eliminarReserva(reserva);
         reserva.getCliente().eliminarReserva(reserva);
     }
 }
