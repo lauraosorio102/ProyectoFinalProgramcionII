@@ -15,6 +15,7 @@ import java.util.UUID;
 public class Reserva {
     private UUID id;
     private Alojamiento alojamiento;
+    private Cliente cliente;
     private int numeroHuespedes;
     private ArrayList<LocalDate> diasReserva;
     private float Precio;

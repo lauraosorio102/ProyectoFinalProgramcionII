@@ -36,13 +36,4 @@ public class ControladorPrincipal {
         stage.close();
     }
 
-    public static String pedirCodigoPorInterfaz() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Codigo de verificacion");
-        dialog.setHeaderText(null);
-        dialog.setContentText("Ingresa el código que recibiste por correo:");
-
-        Optional<String> result = dialog.showAndWait();
-        return result.orElse("");
-    }
 }

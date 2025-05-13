@@ -10,4 +10,22 @@ public class OfertaRepository {
     public OfertaRepository() {
         ofertas = new ArrayList<>();
     }
+
+    public void agregarOferta(Oferta oferta) {
+        ofertas.add(oferta);
+        guardarDatos();
+    }
+
+
+    public void eliminarOferta(Oferta oferta) {
+        ofertas.remove(oferta);
+        guardarDatos();
+    }
+
+    public void guardarDatos() {
+    }
+
+    public ArrayList<Oferta> listarOfertas() {
+        return ofertas;
+    }
 }

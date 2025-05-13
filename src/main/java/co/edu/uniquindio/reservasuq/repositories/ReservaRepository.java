@@ -10,4 +10,16 @@ public class ReservaRepository {
     public ReservaRepository() {
         reservas = new ArrayList<>();
     }
+
+    public ArrayList<Reserva> listarReservas() {
+        return reservas;
+    }
+
+    public void guardarDatos(){
+
+    }
+
+    public void agregarReserva(Reserva reserva) {
+        reservas.add(reserva);
+    }
 }

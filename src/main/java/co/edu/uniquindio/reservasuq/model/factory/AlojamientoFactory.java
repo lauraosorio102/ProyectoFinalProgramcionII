@@ -7,6 +7,7 @@ public class AlojamientoFactory {
             case "Hotel" -> Hotel.class;
             case "Casa" -> Casa.class;
             case "Aparatamento" -> Apartamento.class;
+            case "Habitacion" -> Habitacion.class;
             default -> null;
         };
     }

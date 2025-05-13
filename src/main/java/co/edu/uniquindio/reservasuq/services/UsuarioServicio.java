@@ -1,17 +1,16 @@
 package co.edu.uniquindio.reservasuq.services;
 
-import co.edu.uniquindio.reservasuq.controllers.ControladorPrincipal;
 import co.edu.uniquindio.reservasuq.model.entities.Cliente;
 import co.edu.uniquindio.reservasuq.model.entities.Usuario;
 import co.edu.uniquindio.reservasuq.repositories.UsuarioRepository;
 import co.edu.uniquindio.reservasuq.utils.EnvioEmail;
-import co.edu.uniquindio.reservasuq.utils.GeneradorCodigos;
+import co.edu.uniquindio.reservasuq.utils.ValidacionCodigo;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class UsuarioServicio {
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public UsuarioServicio() {
         usuarioRepository = new UsuarioRepository();
@@ -72,9 +71,9 @@ public class UsuarioServicio {
         Usuario usuario = verificarCredenciales(correo, contrasenia);
         if (usuario == null) throw new Exception("No se encontró un cliente con esas credenciales");
         if (!usuario.isEstado()){
-            String codigo = GeneradorCodigos.generarCodigo();
+            String codigo = ValidacionCodigo.generarCodigo();
             EnvioEmail.enviarNotificacion(correo, "Codigo de verificación", "Su codigo de verificación es:" + codigo );
-            String codigoinput = ControladorPrincipal.pedirCodigoPorInterfaz();
+            String codigoinput = ValidacionCodigo.pedirCodigoPorInterfaz();
             if (codigoinput.equals(codigo)){
                 usuario.setEstado(true);
             }else{
@@ -99,9 +98,9 @@ public class UsuarioServicio {
         if (!contraseniavieja.equals(contraseniaviejavalidacion)) throw new Exception("Las contraseñas no coinciden");
         if (!contraseniavieja.equals(usuario.getContrasenia())) throw new Exception("Contraseña incorrecta");
         if (contrasenianueva.equals(usuario.getContrasenia()))throw new Exception("La contraseña nueva debe ser diferente a la actual");
-        String codigo = GeneradorCodigos.generarCodigo();
+        String codigo = ValidacionCodigo.generarCodigo();
         EnvioEmail.enviarNotificacion(usuario.getContrasenia(), "Codigo de verificación", "Su codigo de verificación es:" + codigo );
-        String codigoinput = ControladorPrincipal.pedirCodigoPorInterfaz();
+        String codigoinput = ValidacionCodigo.pedirCodigoPorInterfaz();
         if (codigoinput.equals(codigo)){
             usuario.setContrasenia(contrasenianueva);
             usuarioRepository.guardarDatos();
@@ -117,6 +116,7 @@ public class UsuarioServicio {
     }
 
     public void editarCliente(Cliente cliente, String nombre, String telefono)throws Exception {
+        if (cliente == null)throw new Exception("Seleccione un cliente");
         if (nombre.isEmpty()||telefono.isEmpty())throw new Exception("Rellene los datos.");
         StringBuilder e = new StringBuilder();
         if (!Pattern.matches("^\\d{10}$", telefono)) e.append("telefono no valido - ");
@@ -124,6 +124,10 @@ public class UsuarioServicio {
         if (!e.isEmpty())throw new Exception(e + "Verifique los campos y rellene.");
         cliente.setNombre(nombre);
         cliente.setTelefono(telefono);
+        usuarioRepository.guardarDatos();
+    }
+
+    public void guardarDatos(){
         usuarioRepository.guardarDatos();
     }
 }

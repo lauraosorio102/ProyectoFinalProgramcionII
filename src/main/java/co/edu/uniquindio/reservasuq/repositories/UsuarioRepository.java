@@ -25,4 +25,10 @@ public class UsuarioRepository {
         usuarios.remove(cliente);
         guardarDatos();
     }
+
+    public void guardarDatos() {
+    }
+
+    public void cargarDatos() {
+    }
 }
