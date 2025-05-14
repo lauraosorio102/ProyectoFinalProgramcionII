@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 public interface IEmpresaServicio {
@@ -66,6 +67,8 @@ public interface IEmpresaServicio {
         ArrayList<Reserva> listarReservas();
 
         ArrayList<Reserva> listarReservas(Usuario usuario);
+
+        Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad();
 
         //Varios
 

@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class EmpresaServicio implements IEmpresaServicio {
         private final AlojamientoServicio alojamientoServicio;
@@ -119,6 +120,10 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public ArrayList<Reserva> listarReservas(Usuario usuario) {
         return reservaServicio.listarReservas(usuario);
+    }
+
+    public Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad(){
+            return reservaServicio.alojamientosMasPopularesCiudad();
     }
 
     public void agregarResenia(Cliente cliente,Alojamiento alojamiento, String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {

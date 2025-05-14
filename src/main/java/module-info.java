@@ -1,4 +1,4 @@
-module com.uniquindio.reservasuq {
+module co.edu.uniquindio.reservasuq {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
