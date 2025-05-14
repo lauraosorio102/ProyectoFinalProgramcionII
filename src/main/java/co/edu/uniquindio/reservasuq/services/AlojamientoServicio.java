@@ -18,23 +18,23 @@ public class AlojamientoServicio {
         StringBuilder e = verificarDatos(nombre,descripcion,ciudad,foto,precioporNoche,capacidadHuespedes,costoAdicional);
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos y rellene.");
         float precioNoche = 0;
-        float huespedes = 0;
+        float costoAdicionall = 0;
         try{
             precioNoche = Float.parseFloat(precioporNoche);
         }catch (NumberFormatException ex){
             e.append("Precio por noche no valido - ");
         }
         try{
-            huespedes = Float.parseFloat(costoAdicional);
+            costoAdicionall = Float.parseFloat(costoAdicional);
         }catch (NumberFormatException ex){
             e.append("Costo adicional no valido - ");
         }
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos");
         if (precioNoche <= 0 )e.append("Precio no valido - ");
-        if (huespedes <= 0)e.append("Cantidad de huespedes no valido - ");
+        if (costoAdicionall <= 0)e.append("Cantidad de huespedes no valido - ");
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos");
         if (buscarAlojamiento(nombre) != null && buscarAlojamiento(nombre).getCiudad().equals(ciudad)) throw new Exception(nombre+" ya existe en esa ciudad");
-        Casa casa = new Casa(nombre,descripcion,ciudad,foto,precioNoche,capacidadHuespedes,huespedes);
+        Casa casa = new Casa(nombre,descripcion,ciudad,foto,precioNoche,capacidadHuespedes,costoAdicionall);
         alojamientoRepository.agregarAlojamiento(casa);
     }
 
@@ -42,23 +42,23 @@ public class AlojamientoServicio {
         StringBuilder e = verificarDatos(nombre,descripcion,ciudad,foto,precioporNoche,capacidadHuespedes,costoAdicional);
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos y rellene.");
         float precioNoche = 0;
-        float huespedes = 0;
+        float Costoadicional = 0;
         try{
             precioNoche = Float.parseFloat(precioporNoche);
         }catch (NumberFormatException ex){
             e.append("Precio por noche no valido - ");
         }
         try{
-            huespedes = Float.parseFloat(costoAdicional);
+            Costoadicional = Float.parseFloat(costoAdicional);
         }catch (NumberFormatException ex){
             e.append("Costo adicional no valido - ");
         }
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos");
         if (precioNoche <= 0 )e.append("Precio no valido - ");
-        if (huespedes <= 0)e.append("Cantidad de huespedes no valido - ");
+        if (Costoadicional <= 0)e.append("Cantidad de huespedes no valido - ");
         if (!e.isEmpty()) throw new Exception(e+"Verifique los datos");
         if (buscarAlojamiento(nombre) != null && buscarAlojamiento(nombre).getCiudad().equals(ciudad)) throw new Exception(nombre+" ya existe en esa ciudad");
-        Apartamento apartamento = new Apartamento(nombre,descripcion,ciudad,foto,precioNoche,capacidadHuespedes,huespedes);
+        Apartamento apartamento = new Apartamento(nombre,descripcion,ciudad,foto,precioNoche,capacidadHuespedes,Costoadicional);
         alojamientoRepository.agregarAlojamiento(apartamento);
     }
 
@@ -141,5 +141,30 @@ public class AlojamientoServicio {
             if (!alojamiento.getClass().equals(Habitacion.class)) filtrados.add(alojamiento);
         }
         return filtrados;
+    }
+
+    public void editarAlojamiento(Alojamiento alojamiento,String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes) throws Exception {
+        StringBuilder e = verificarDatos(nombre, descripcion, ciudad, foto);
+        if (precioporNoche.isEmpty()) e.append("El precio por noche no puede estar vacio - ");
+        if (capacidadHuespedes == 0) e.append("Debe seleccionar una capacidad válida de capacidad huespedes - ");
+        if (!e.isEmpty())throw new Exception("Verifique los datos y rellene - ");
+        if (buscarAlojamiento(nombre) != null && buscarAlojamiento(nombre).getCiudad().equals(ciudad)) throw new Exception(nombre+" ya existe en esa ciudad");
+        if (!alojamiento.getClass().equals(Habitacion.class)) {
+            float precioNoche = 0;
+            try{
+                precioNoche = Float.parseFloat(precioporNoche);
+            }catch (NumberFormatException ex){
+                e.append("Precio por noche no valido - ");
+            }
+            if (!e.isEmpty()) throw new Exception(e+"Verifique los datos");
+            if (precioNoche <= 0 )e.append("Precio no valido - ");
+            alojamiento.setPrecioPorNoche(precioNoche);
+        }
+        alojamiento.setNombre(nombre);
+        alojamiento.setDescripcion(descripcion);
+        alojamiento.setCiudad(ciudad);
+        alojamiento.setFoto(foto);
+        alojamiento.setCapacidadHuespedes(capacidadHuespedes);
+        alojamientoRepository.guardarDatos();
     }
 }

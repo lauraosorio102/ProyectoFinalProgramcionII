@@ -18,15 +18,17 @@ public abstract class Alojamiento {
     private String nombre, descripcion;
     private Image foto;
     private int capacidadHuespedes;
+    private float precioPorNoche;
     private ArrayList<String> servicios;
     private ArrayList<Resenia> resenias;
 
-    public Alojamiento(String nombre,String descripcion,Ciudad ciudad,Image foto,int capacidadHuespedes){
+    public Alojamiento(String nombre,String descripcion,Ciudad ciudad,Image foto, float precioPorNoche  ,int capacidadHuespedes){
         this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.ciudad = ciudad;
         this.foto = foto;
+        this.precioPorNoche = precioPorNoche;
         this.capacidadHuespedes = capacidadHuespedes;
         this.servicios = new ArrayList<>();
     }

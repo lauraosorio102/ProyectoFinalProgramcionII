@@ -14,7 +14,7 @@ public class Hotel extends Alojamiento{
     private ArrayList<Habitacion> habitaciones;
 
     public Hotel(String nombre, String descripcion, Ciudad ciudad, Image foto){
-        super(nombre, descripcion, ciudad, foto, 0);
+        super(nombre, descripcion, ciudad, foto, 0,0);
         this.habitaciones = new ArrayList<>();
     }
 
@@ -35,6 +35,7 @@ public class Hotel extends Alojamiento{
         Habitacion habitacion = new Habitacion(numeroHabitacion,descripcion,foto,capacidadhuespedes,this,Float.parseFloat(costoHabitacion));
         habitaciones.add(habitacion);
         calcularCapacidad();
+        calcularPrecioPorNoche();
     }
 
     public Habitacion buscarHabitacion(String numeroHabitacion){
@@ -51,6 +52,7 @@ public class Hotel extends Alojamiento{
         if (!habitaciones.contains(habitacion)) throw new Exception("No se encuentra la habitacion");
         habitaciones.remove(habitacion);
         calcularCapacidad();
+        calcularPrecioPorNoche();
     }
 
     public void calcularCapacidad(){
@@ -61,13 +63,16 @@ public class Hotel extends Alojamiento{
         setCapacidadHuespedes(capacidad);
     }
 
+    public void calcularPrecioPorNoche(){
+        float precio = 0;
+        for (Habitacion habitacion : habitaciones) {
+            precio += habitacion.getPrecioPorNoche();
+        }
+        setPrecioPorNoche(precio);
+    }
 
     public float calcularPrecioTotal(int dias) {
-        float total = 0;
-        for (Habitacion habitacion : habitaciones) {
-            total += habitacion.getCostoHabitacion();
-        }
-        return total*dias;
+        return this.getPrecioPorNoche()*dias;
     }
 
     public ArrayList<Habitacion> listarHabitaciones() {

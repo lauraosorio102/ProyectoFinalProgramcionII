@@ -113,7 +113,4 @@ public class EmpresaServicioTest {
                         imagenValida, precioValido, capacidadValida, costoAdicionalValido),
                 "Debería fallar por casa duplicada en la misma ciudad");
     }
-
-
-
 }

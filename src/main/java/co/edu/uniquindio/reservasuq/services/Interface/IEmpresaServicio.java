@@ -45,7 +45,7 @@ public interface IEmpresaServicio {
 
         void eliminarAlojamiento(Alojamiento alojamiento)throws Exception;
 
-        //void editarAlojamiento(String nombre, String descripcion, Ciudad ciudad, Image foto, float precioporNoche, int capacidadHuespedes)throws Exception;
+        void editarAlojamiento(Alojamiento alojamiento,String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes)throws Exception;
 
         //OfertaServicio
         void agregarOferta(String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, String valorDescuento, int diasReserva)throws Exception;

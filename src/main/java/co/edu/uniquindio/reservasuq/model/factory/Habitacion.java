@@ -8,18 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Habitacion extends Alojamiento{
-    private float costoHabitacion;
     private Hotel hotel;
 
-    public Habitacion(String nombre, String descripcion,  Image foto, int capacidadHuespedes,Hotel hotel, float costoHabitacion) {
-        super(nombre, descripcion, null, foto, capacidadHuespedes);
+    public Habitacion(String nombre, String descripcion,  Image foto, int capacidadHuespedes,Hotel hotel, float precioPorNoche) {
+        super(nombre, descripcion, null, foto, precioPorNoche ,capacidadHuespedes);
         this.hotel = hotel;
         this.setCiudad(hotel.getCiudad());
-        this.costoHabitacion = costoHabitacion;
     }
 
 
     public float calcularPrecioTotal(int dias) {
-        return costoHabitacion * dias;
+        return this.getPrecioPorNoche() * dias;
     }
 }

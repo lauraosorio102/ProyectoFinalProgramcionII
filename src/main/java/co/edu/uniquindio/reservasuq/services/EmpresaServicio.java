@@ -84,6 +84,10 @@ public class EmpresaServicio implements IEmpresaServicio {
         alojamientoServicio.eliminarAlojamiento(alojamiento);
     }
 
+    public void editarAlojamiento(Alojamiento alojamiento,String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes) throws Exception {
+        alojamientoServicio.editarAlojamiento(alojamiento,nombre, descripcion,ciudad, foto, precioporNoche, capacidadHuespedes);
+    }
+
     public void agregarOferta(String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, String valorDescuento, int diasReserva) throws Exception {
         ofertasServicio.agregarOferta(nombre,fechainicial,diasOferta,cantidadhuespedes,valorDescuento,diasReserva);
     }
