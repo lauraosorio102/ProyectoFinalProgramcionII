@@ -27,7 +27,11 @@ public class Cliente extends Usuario {
     }
 
     public void recargarBilletera(String valorRecarga) throws Exception {
-        billetera.RecargarBilletera(valorRecarga);
+        billetera.recargarBilletera(valorRecarga);
+    }
+
+    public void cobrarBilletera(float valorRecarga) throws Exception {
+        billetera.cobrarBilletera(valorRecarga);
     }
 
     public void agregarResenia(String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {

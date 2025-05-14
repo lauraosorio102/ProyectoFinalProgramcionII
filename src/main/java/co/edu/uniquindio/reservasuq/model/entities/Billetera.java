@@ -11,18 +11,23 @@ public class Billetera {
     private UUID id;
     private Float saldo;
 
-    public void RecargarBilletera(float recarga)throws Exception{
+    public void recargarBilletera(float recarga)throws Exception{
         if (recarga <= 0)throw new Exception("Valor invalido");
         saldo += recarga;
     }
 
-    public void RecargarBilletera(String recarga)throws Exception{
+    public void recargarBilletera(String recarga)throws Exception{
         float valorRecarga;
         try{
              valorRecarga = Float.parseFloat(recarga);
         }catch(NumberFormatException e){
             throw new Exception("Valor invalido");
         }
-        RecargarBilletera(valorRecarga);
+        recargarBilletera(valorRecarga);
+    }
+
+    public void cobrarBilletera(float valorRecarga) throws Exception {
+        if (saldo < valorRecarga) throw new Exception("Fondos insuficientes");
+        saldo -= valorRecarga;
     }
 }

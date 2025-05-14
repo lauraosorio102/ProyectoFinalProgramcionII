@@ -7,6 +7,8 @@ import co.edu.uniquindio.reservasuq.repositories.ReservaRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class ReservaServicio {
@@ -45,6 +47,7 @@ public class ReservaServicio {
         if (numeroHuespedes > alojamiento.getCapacidadHuespedes())throw new Exception("Este alojamiento no tiene capacidad para tantas personas");
         float precio = alojamiento.calcularPrecioTotal(diasReserva);
         float preciototal = verificarDescuento(alojamiento,precio,numeroHuespedes,diasReserva,fechas,ofertas);
+        cliente.cobrarBilletera(preciototal);
         Factura factura = Factura.builder().fecha(LocalDateTime.now()).subtotal(precio).total(preciototal).id(UUID.randomUUID()).build();
         Reserva reserva = Reserva.builder().id(UUID.randomUUID()).alojamiento(alojamiento).cliente(cliente).numeroHuespedes(numeroHuespedes).diasReserva(fechas).Precio(preciototal).factura(factura).build();
         reservaRepository.agregarReserva(reserva);
@@ -88,7 +91,31 @@ public class ReservaServicio {
 
     public void eliminarReserva(Reserva reserva) throws Exception {
         if (reserva == null) throw new Exception("Seleccione una reserva para cancelarla");
+        if (!reserva.getDiasReserva().getFirst().isBefore(LocalDate.now())) throw new Exception("No puede cancelar la reserva sin tiempo de anticipación");
         reservaRepository.eliminarReserva(reserva);
         reserva.getCliente().eliminarReserva(reserva);
+        reserva.getCliente().recargarBilletera(""+reserva.getFactura().getTotal());
+    }
+
+    public Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad(){
+        ArrayList<Reserva>reservas = listarReservas();
+        Map<Alojamiento, Integer> alojamientos = new HashMap<>();
+        for (Reserva reserva : reservas) {
+            Alojamiento alojamiento = reserva.getAlojamiento();
+            alojamientos.put(alojamiento,alojamientos.getOrDefault(alojamiento,0)+1);
+        }
+        Map<Ciudad, Alojamiento> popularesPorCiudad = new HashMap<>();
+        Map<Ciudad, Integer> maxReservasPorCiudad = new HashMap<>();
+        for (Map.Entry<Alojamiento, Integer> entry : alojamientos.entrySet()) {
+            Alojamiento alojamiento = entry.getKey();
+            Ciudad ciudad = alojamiento.getCiudad();
+            int cantidad = entry.getValue();
+
+            if (!popularesPorCiudad.containsKey(ciudad)|| cantidad > maxReservasPorCiudad.get(ciudad)) {
+                popularesPorCiudad.put(ciudad,alojamiento);
+                maxReservasPorCiudad.put(ciudad,cantidad);
+            }
+        }
+        return popularesPorCiudad;
     }
 }
