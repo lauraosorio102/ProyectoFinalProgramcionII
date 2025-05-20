@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="744.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableHotelesGestionHabitaciones" layoutX="14.0" layoutY="62.0" prefHeight="234.0" prefWidth="301.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Label layoutX="220.0" layoutY="14.0" text="Gestion Habitaciones   ">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonEliminarGestionHabitaciones" layoutX="264.0" layoutY="498.0" mnemonicParsing="false" text="Eliminar" />
+      <Label layoutX="378.0" layoutY="87.0" text="Descripcion:" />
+      <Label layoutX="323.0" layoutY="162.0" text="Cantidad huespedes:" />
+      <Label layoutX="18.0" layoutY="46.0" text="Tabla hoteles   " />
+      <Spinner fx:id="spinnercantidadHuespedesGestionHabitaciones" layoutX="460.0" layoutY="158.0" />
+      <Label layoutX="392.0" layoutY="122.0" text="Costo:" />
+      <Button fx:id="buttonEditarGestionHabitaciones" layoutX="187.0" layoutY="498.0" mnemonicParsing="false" text="Editar" />
+      <TextField fx:id="txtCostoGestionHabitaciones" layoutX="460.0" layoutY="118.0" />
+      <Label layoutX="347.0" layoutY="201.0" prefWidth="133.0" text="Foto:" />
+      <TextField fx:id="txtDescripcionGestionHabitaciones" layoutX="460.0" layoutY="83.0" />
+      <Label layoutX="319.0" layoutY="55.0" text="Numero de habitaciones:" />
+      <ImageView fx:id="imagenFotoGestionHabitaciones" fitHeight="90.0" fitWidth="133.0" layoutX="394.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="buttonSeleccionarFotoGestionHabitaciones" layoutX="547.0" layoutY="222.0" mnemonicParsing="false" text="Seleccionar foto " />
+      <Spinner fx:id="spinneeNumeroHabitacionesGestionHabitaciones" layoutX="460.0" layoutY="51.0" />
+      <TableView fx:id="tableAlojamientosGestableHabitacionesGestionHabitacionestionAlojamientos1" layoutX="347.0" layoutY="296.0" prefHeight="234.0" prefWidth="325.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Label layoutX="563.0" layoutY="275.0" text="Tabla habitaciones   " />
+   </children>
+</Pane>
