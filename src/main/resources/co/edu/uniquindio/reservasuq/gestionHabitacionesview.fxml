@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="744.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="744.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tableHotelesGestionHabitaciones" layoutX="14.0" layoutY="62.0" prefHeight="234.0" prefWidth="301.0">
          <columns>
@@ -29,7 +29,7 @@
       <Label layoutX="18.0" layoutY="46.0" text="Tabla hoteles   " />
       <Spinner fx:id="spinnercantidadHuespedesGestionHabitaciones" layoutX="460.0" layoutY="158.0" />
       <Label layoutX="392.0" layoutY="122.0" text="Costo:" />
-      <Button fx:id="buttonEditarGestionHabitaciones" layoutX="187.0" layoutY="498.0" mnemonicParsing="false" text="Editar" />
+      <Button fx:id="buttonAnadirGestionHabitaciones" layoutX="187.0" layoutY="498.0" mnemonicParsing="false" text="Añadir" />
       <TextField fx:id="txtCostoGestionHabitaciones" layoutX="460.0" layoutY="118.0" />
       <Label layoutX="347.0" layoutY="201.0" prefWidth="133.0" text="Foto:" />
       <TextField fx:id="txtDescripcionGestionHabitaciones" layoutX="460.0" layoutY="83.0" />
