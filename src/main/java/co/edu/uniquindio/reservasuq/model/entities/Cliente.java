@@ -3,13 +3,14 @@ package co.edu.uniquindio.reservasuq.model.entities;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
 @Setter
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Serializable {
 
     private String cedula,nombre,telefono;
     private Billetera billetera;
@@ -34,14 +35,18 @@ public class Cliente extends Usuario {
         billetera.cobrarBilletera(valorRecarga);
     }
 
+    public float consultarSaldo() {
+        return billetera.getSaldo();
+    }
+
     public void agregarResenia(String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {
         StringBuilder e = new StringBuilder();
         if (titulo.isEmpty()) e.append("Rellena el titulo - ");
         if (descripcion.isEmpty()) e.append("Rellena la descripcion - ");
         if (reserva == null) e.append("Seleccione la reserva - ");
         if (!e.isEmpty())throw new Exception(e+"Rellene los datos porfavor.");
-        if (reserva.getDiasReserva().getLast().isBefore(LocalDate.now()))throw new Exception("No puedes escribir una reseña si la reserva no ha terminado.");
-        Resenia resenia = Resenia.builder().titulo(titulo).descripcion(descripcion).Valoracion(valoracion).build();
+        if (reserva.getDiasReserva().getLast().isAfter(LocalDate.now()))throw new Exception("No puedes escribir una reseña si la reserva no ha terminado o no ha sucedido.");
+        Resenia resenia = Resenia.builder().titulo(titulo).descripcion(descripcion).Valoracion(valoracion).nombreCliente(this.nombre).nombreAlojamiento(reserva.getAlojamiento().getNombre()).build();
         resenias.add(resenia);
     }
 
@@ -61,5 +66,14 @@ public class Cliente extends Usuario {
 
     public void agregarReserva(Reserva reserva) {
         reservas.add(reserva);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "telefono='" + telefono + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", cedula='" + cedula + '\'' +
+                '}';
     }
 }

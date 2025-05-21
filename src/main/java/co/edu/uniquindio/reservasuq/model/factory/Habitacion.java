@@ -5,9 +5,11 @@ import javafx.scene.image.Image;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class Habitacion extends Alojamiento{
+public class Habitacion extends Alojamiento implements Serializable {
     private Hotel hotel;
 
     public Habitacion(String nombre, String descripcion,  Image foto, int capacidadHuespedes,Hotel hotel, float precioPorNoche) {
@@ -19,5 +21,11 @@ public class Habitacion extends Alojamiento{
 
     public float calcularPrecioTotal(int dias) {
         return this.getPrecioPorNoche() * dias;
+    }
+
+    public String toString() {
+        return super.toString()+"Habitacion{" +
+                "hotel=" + hotel +
+                '}';
     }
 }

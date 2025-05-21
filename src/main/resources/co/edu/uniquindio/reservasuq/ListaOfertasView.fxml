@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="696.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.ListaOfertasController">
+   <children>
+      <Label layoutX="308.0" layoutY="14.0" text="Ofertas">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TableOfertas" focusTraversable="false" layoutX="14.0" layoutY="65.0" mouseTransparent="true" prefHeight="410.0" prefWidth="663.0">
+        <columns>
+          <TableColumn fx:id="columnnombreOferta" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="columnValordescuento" prefWidth="120.0" text="Valor del descuento" />
+            <TableColumn fx:id="columnfechaInicio" prefWidth="75.0" text="Fecha inicio" />
+            <TableColumn fx:id="columnfechafin" prefWidth="75.0" text="Fecha fin" />
+            <TableColumn fx:id="columnhuespedesoferta" minWidth="0.0" prefWidth="75.0" text="Huespedes" />
+            <TableColumn fx:id="columndiasoferta" prefWidth="47.0" text="Dias" />
+            <TableColumn fx:id="columnAlojamientosOferta" prefWidth="195.0" text="Alojamientos" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

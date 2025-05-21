@@ -1,5 +1,6 @@
 package co.edu.uniquindio.reservasuq.services;
 
+import co.edu.uniquindio.reservasuq.controllers.ControladorPrincipal;
 import co.edu.uniquindio.reservasuq.model.entities.*;
 import co.edu.uniquindio.reservasuq.model.factory.Alojamiento;
 import co.edu.uniquindio.reservasuq.model.factory.Habitacion;
@@ -22,7 +23,15 @@ public class EmpresaServicio implements IEmpresaServicio {
             ofertasServicio = new OfertaServicio();
             reservaServicio = new ReservaServicio();
             usuarioServicio = new UsuarioServicio();
+            cargarAdmin();
         }
+
+    public void cargarAdmin() {
+           if (buscarUsuario("juandavidtapiero22@gmail.com") == null) {
+               listarUsuarios().add(Administrador.getInstancia("juandavidtapiero22@gmail.com", "1234"));
+               usuarioServicio.guardarDatos();
+           }
+    }
 
     public void agregarCliente(String correo, String contrasenia, String cedula, String nombre, String telefono) throws Exception {
         usuarioServicio.agregarCliente(correo,contrasenia,cedula,nombre,telefono);
@@ -48,8 +57,12 @@ public class EmpresaServicio implements IEmpresaServicio {
         return usuarioServicio.buscarCliente(cedula);
     }
 
-    public void cambiarContrasenia(String contraseniavieja,String contraseniaviejavalidacion, String contrasenianueva, Usuario usuario) throws Exception {
-        usuarioServicio.cambiarContrasenia(contraseniavieja,contraseniaviejavalidacion,contrasenianueva,usuario);
+    public Usuario buscarUsuario(String correo) {
+        return usuarioServicio.buscarUsuario(correo);
+    }
+
+    public void cambiarContrasenia(String contrasenianueva, Usuario usuario) throws Exception {
+        usuarioServicio.cambiarContrasenia(contrasenianueva,usuario);
     }
 
     public void agregarCasa(String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes, String costoAdicional) throws Exception {
@@ -64,6 +77,17 @@ public class EmpresaServicio implements IEmpresaServicio {
         alojamientoServicio.agregarHotel(nombre,descripcion,ciudad,foto);
     }
 
+    public  void agregarAlojamiento(String alojamiento, String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes, String costoAdicional)throws Exception{
+        if (alojamiento != null) {
+            switch (alojamiento){
+                case "Hotel" -> agregarHotel(nombre,descripcion,ciudad,foto);
+                case "Casa" -> agregarCasa(nombre, descripcion, ciudad, foto, precioporNoche, capacidadHuespedes, costoAdicional);
+                case "Apartamento" -> agregarApartamento(nombre, descripcion, ciudad, foto, precioporNoche, capacidadHuespedes, costoAdicional);
+                default -> throw new Exception("No se pudo agregar el alojamiento");
+            };
+        }
+    }
+
     public ArrayList<Alojamiento> listarAlojamientos() {
         return alojamientoServicio.listarAlojamientos();
     }
@@ -72,8 +96,16 @@ public class EmpresaServicio implements IEmpresaServicio {
         return alojamientoServicio.listarAlojamientosPrincipales();
     }
 
-    public ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes) {
-        return alojamientoServicio.filtrarAlojamientos(tipoAlojamiento,ciudad,capacidadHuespedes);
+    public ArrayList<Hotel> listarHoteles() {
+        return alojamientoServicio.listarHoteles();
+    }
+
+    public ArrayList<Cliente> listarClientes() {
+        return usuarioServicio.listarClientes();
+    }
+
+    public ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes,String nombre) {
+        return alojamientoServicio.filtrarAlojamientos(tipoAlojamiento,ciudad,capacidadHuespedes,nombre);
     }
 
     public Alojamiento buscarAlojamiento(String nombre) {
@@ -96,12 +128,25 @@ public class EmpresaServicio implements IEmpresaServicio {
         ofertasServicio.eliminarOferta(oferta);
     }
 
+    public ArrayList<Oferta> filtrarOferta(String nombre) {
+            return ofertasServicio.filtrarOferta(nombre);
+    }
+
+
     public Oferta buscarOferta(String nombre) {
         return ofertasServicio.buscarOferta(nombre);
     }
 
     public ArrayList<Oferta> listarOfertas() {
         return ofertasServicio.listarOfertas();
+    }
+
+    public void añadirOfertaAlojamiento(Oferta oferta, Alojamiento alojamiento) throws Exception {
+        oferta.agregarAlojamiento(alojamiento);
+    }
+
+    public void eliminarOfertaAlojamiento(Oferta oferta, Alojamiento alojamiento) throws Exception {
+        oferta.eliminarAlojamiento(alojamiento);
     }
 
     public void editarOferta(Oferta oferta, String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, String valorDescuento,int diasReserva) throws Exception {
@@ -130,16 +175,18 @@ public class EmpresaServicio implements IEmpresaServicio {
             return reservaServicio.alojamientosMasPopularesCiudad();
     }
 
-    public void agregarResenia(Cliente cliente,Alojamiento alojamiento, String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {
+    public void agregarResenia(Cliente cliente, String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {
         cliente.agregarResenia( titulo,  descripcion,  valoracion, reserva);
         usuarioServicio.guardarDatos();
-        alojamiento.agregarResenia( titulo,  descripcion,  valoracion);
+        Alojamiento alojamiento = reserva.getAlojamiento();
+        alojamiento.agregarResenia(cliente, titulo,  descripcion,  valoracion);
         alojamientoServicio.guardarDatos();
     }
 
-    public void eliminarResenia(Cliente cliente,Alojamiento alojamiento, Resenia resenia) throws Exception {
+    public void eliminarResenia(Cliente cliente, Resenia resenia) throws Exception {
         cliente.eliminarResenia(resenia);
         usuarioServicio.guardarDatos();
+        Alojamiento alojamiento = alojamientoServicio.buscarAlojamiento(resenia.getNombreAlojamiento());
         alojamiento.eliminarResenia(resenia);
         alojamientoServicio.guardarDatos();
     }
@@ -148,9 +195,13 @@ public class EmpresaServicio implements IEmpresaServicio {
         return cliente.listarResenias();
     }
 
-    public void RecargarBilletera(Cliente cliente, String valorRecarga) throws Exception {
+    public void recargarBilletera(Cliente cliente, String valorRecarga) throws Exception {
         cliente.recargarBilletera(valorRecarga);
         usuarioServicio.guardarDatos();
+    }
+
+    public float consultarSaldo(Cliente cliente) {
+        return usuarioServicio.consultarSaldo(cliente);
     }
 
     public void agregarHabitacion(Hotel hotel, String numeroHabitacion, String descripcion, String costoHabitacion, int capacidadhuespedes, Image foto) throws Exception {
@@ -180,4 +231,7 @@ public class EmpresaServicio implements IEmpresaServicio {
     public ArrayList<String> listarServicios(Alojamiento alojamiento) {
         return alojamiento.listarServicios();
     }
+
+
+
 }

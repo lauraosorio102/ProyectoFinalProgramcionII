@@ -111,7 +111,7 @@ public class AlojamientoServicio {
         alojamientoRepository.eliminarAlojamiento(alojamiento);
     }
 
-    public ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes) {
+    public ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes,String nombre) {
         ArrayList<Alojamiento> alojamientos = alojamientoRepository.listarAlojamientos();
         ArrayList<Alojamiento> filtrados = new ArrayList<>();
 
@@ -124,7 +124,10 @@ public class AlojamientoServicio {
             if (ciudad != null && !alojamiento.getCiudad().equals(ciudad)) {
                 cumple = false;
             }
-            if (capacidadHuespedes > 0 && alojamiento.getCapacidadHuespedes() > capacidadHuespedes) {
+            if (capacidadHuespedes > 0 && alojamiento.getCapacidadHuespedes() < capacidadHuespedes) {
+                cumple = false;
+            }
+            if (!alojamiento.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
                 cumple = false;
             }
             if (cumple) {
@@ -138,7 +141,7 @@ public class AlojamientoServicio {
         ArrayList<Alojamiento> alojamientos = alojamientoRepository.listarAlojamientos();
         ArrayList<Alojamiento> filtrados = new ArrayList<>();
         for (Alojamiento alojamiento : alojamientos) {
-            if (!alojamiento.getClass().equals(Habitacion.class)) filtrados.add(alojamiento);
+            if (!(alojamiento instanceof Habitacion)) filtrados.add(alojamiento);
         }
         return filtrados;
     }
@@ -166,5 +169,14 @@ public class AlojamientoServicio {
         alojamiento.setFoto(foto);
         alojamiento.setCapacidadHuespedes(capacidadHuespedes);
         alojamientoRepository.guardarDatos();
+    }
+
+    public ArrayList<Hotel> listarHoteles() {
+        ArrayList<Alojamiento> alojamientos = alojamientoRepository.listarAlojamientos();
+        ArrayList<Hotel> filtrados = new ArrayList<>();
+        for (Alojamiento alojamiento : alojamientos) {
+            if (alojamiento instanceof Hotel) filtrados.add((Hotel) alojamiento);
+        }
+        return filtrados;
     }
 }

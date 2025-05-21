@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="696.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.ListaClientesController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Clientes">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableClientes" layoutX="14.0" layoutY="46.0" prefHeight="439.0" prefWidth="670.0">
+        <columns>
+          <TableColumn fx:id="columnNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="columnCedula" prefWidth="75.0" text="Cedula" />
+            <TableColumn fx:id="columnTelefono" prefWidth="105.0" text="Telefono" />
+            <TableColumn fx:id="columnsaldo" prefWidth="93.0" text="Saldo" />
+            <TableColumn fx:id="columncorreo" prefWidth="211.0" text="Correo" />
+            <TableColumn fx:id="columnestado" prefWidth="110.0" text="Cuenta Activa" />
+        </columns>
+      </TableView>
+      <Button layoutX="564.0" layoutY="18.0" mnemonicParsing="false" onAction="#DeshabilitarCuenta" text="Deshabilitar cuenta" />
+   </children>
+</Pane>

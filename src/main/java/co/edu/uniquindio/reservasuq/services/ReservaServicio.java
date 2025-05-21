@@ -3,6 +3,10 @@ package co.edu.uniquindio.reservasuq.services;
 import co.edu.uniquindio.reservasuq.model.entities.*;
 import co.edu.uniquindio.reservasuq.model.factory.Alojamiento;
 import co.edu.uniquindio.reservasuq.repositories.ReservaRepository;
+import co.edu.uniquindio.reservasuq.utils.EnvioEmail;
+import co.edu.uniquindio.reservasuq.utils.GeneradorQR;
+import jakarta.activation.DataSource;
+import jakarta.mail.util.ByteArrayDataSource;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -52,7 +56,9 @@ public class ReservaServicio {
         Reserva reserva = Reserva.builder().id(UUID.randomUUID()).alojamiento(alojamiento).cliente(cliente).numeroHuespedes(numeroHuespedes).diasReserva(fechas).Precio(preciototal).factura(factura).build();
         reservaRepository.agregarReserva(reserva);
         cliente.agregarReserva(reserva);
-
+        byte[] imagenQR = GeneradorQR.generarQRComoBytes(factura.getId().toString(), 300, 300);
+        DataSource ds = new ByteArrayDataSource(imagenQR, "image/png");
+        EnvioEmail.enviarNotificacionImagen(cliente.getCorreo(),"Aqui tiene su factura de la reserva realizada","Reserva:\n"+reserva.toString()+"\nFactura:\n" +factura.toString() ,ds);
     }
 
     public ArrayList<LocalDate> guardarFechas(LocalDate fechaInicial,int dias){

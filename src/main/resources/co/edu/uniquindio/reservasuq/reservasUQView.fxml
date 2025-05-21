@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.ReservasUQController">
    <children>
-      <Pane prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #0c25c3;">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0c25c3;" VBox.vgrow="NEVER">
          <children>
-            <Label layoutX="41.0" layoutY="47.0" prefHeight="25.0" prefWidth="237.0" text="Bienvenido ">
-               <font>
-                  <Font name="System Bold Italic" size="29.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="237.0" text="Reservas UQ">
-               <font>
-                  <Font name="System Bold" size="23.0" />
-               </font>
-            </Label>
-            <Button fx:id="buttonCerrarsesionReservas" layoutX="499.0" layoutY="19.0" mnemonicParsing="false" text="cerrar sesion " />
-            <Button fx:id="buttonIniciarSesionReservas" layoutX="300.0" layoutY="19.0" mnemonicParsing="false" text="Iniciar sesion " />
-            <Button fx:id="buttonRegistrarseReservas" layoutX="399.0" layoutY="19.0" mnemonicParsing="false" text="Registrarse " />
+            <VBox prefHeight="100.0" prefWidth="262.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="237.0" text="Bienvenido ">
+                     <font>
+                        <Font name="System Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="237.0" text="Reservas UQ">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="buttonCerrarsesionReservas" mnemonicParsing="false" onAction="#CerrarSesionAction" text="cerrar sesion ">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonIniciarSesionReservas" mnemonicParsing="false" onAction="#IniciarSesionAction" text="Iniciar sesion ">
+               <HBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonRegistrarseReservas" mnemonicParsing="false" onAction="#RegistrarseAction" text="Registrarse ">
+               <HBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
+            </Button>
          </children>
-      </Pane>
-      <TabPane layoutY="94.0" prefHeight="307.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      </HBox>
+      <TabPane fx:id="tabpane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="307.0" prefWidth="600.0" style="-fx-background-color: #fce060;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
-          <Tab fx:id="untab1Reservas" text="Untitled Tab 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-          <Tab fx:id="untab2Reservas" text="Untitled Tab 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </Tab>
-            <Tab fx:id="untab3Reservas" text="Untitled Tab 2">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab fx:id="untab4Reservas" text="Untitled Tab 2">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
-            <Tab fx:id="untab5Reservas" text="Untitled Tab 2">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-               </content>
-            </Tab>
+          <Tab fx:id="tab1" closable="false" text="Alojamientos" />
+            <Tab fx:id="tab6" text="Ofertas" />
+          <Tab fx:id="tab2" closable="false" text="Gestionar reservas" />
+            <Tab fx:id="tab3" closable="false" text="Gestionar reseñas" />
+            <Tab fx:id="tab4" closable="false" text="Gestionar cuenta" />
+            <Tab fx:id="tab5" closable="false" text="Recargar Billetera" />
         </tabs>
       </TabPane>
    </children>
-</Pane>
+</VBox>

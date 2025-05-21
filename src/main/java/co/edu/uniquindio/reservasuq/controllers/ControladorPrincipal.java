@@ -1,15 +1,21 @@
 package co.edu.uniquindio.reservasuq.controllers;
 
 import co.edu.uniquindio.reservasuq.services.EmpresaServicio;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import lombok.Getter;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class ControladorPrincipal {
     private static ControladorPrincipal instancia;
+    @Getter
     private EmpresaServicio empresaServicio;
 
     private ControladorPrincipal(){
@@ -36,4 +42,19 @@ public class ControladorPrincipal {
         stage.close();
     }
 
+    public void abrirVentana(String rutaFXML) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(rutaFXML));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Reservas UQ");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

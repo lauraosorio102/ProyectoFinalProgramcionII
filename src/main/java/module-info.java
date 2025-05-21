@@ -4,6 +4,10 @@ module co.edu.uniquindio.reservasuq {
     requires static lombok;
     requires org.simplejavamail.core;
     requires org.simplejavamail;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires jakarta.mail;
+    requires javafx.swing;
 
 
     opens co.edu.uniquindio.reservasuq to javafx.fxml;

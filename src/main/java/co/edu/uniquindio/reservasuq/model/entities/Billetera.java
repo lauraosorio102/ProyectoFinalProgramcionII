@@ -3,11 +3,12 @@ package co.edu.uniquindio.reservasuq.model.entities;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Builder
 @Getter
-public class Billetera {
+public class Billetera implements Serializable {
     private UUID id;
     private Float saldo;
 

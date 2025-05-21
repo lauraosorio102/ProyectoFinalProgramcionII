@@ -4,15 +4,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
-public class Factura {
+public class Factura implements Serializable {
     private UUID id;
     private LocalDateTime fecha;
     private float subtotal,total;
-    //codigo qr
+
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", subtotal=" + subtotal +
+                ", total=" + total +
+                '}';
+    }
 }

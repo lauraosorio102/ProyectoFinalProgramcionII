@@ -5,11 +5,12 @@ import javafx.scene.image.Image;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Getter
 @Setter
-public class Hotel extends Alojamiento{
+public class Hotel extends Alojamiento implements Serializable {
 
     private ArrayList<Habitacion> habitaciones;
 
@@ -77,5 +78,11 @@ public class Hotel extends Alojamiento{
 
     public ArrayList<Habitacion> listarHabitaciones() {
         return habitaciones;
+    }
+
+    public String toString() {
+        return super.toString()+"Hotel{" +
+                "habitaciones=" + habitaciones +
+                '}';
     }
 }

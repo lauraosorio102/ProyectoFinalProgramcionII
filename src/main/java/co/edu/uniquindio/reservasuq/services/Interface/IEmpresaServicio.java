@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 public interface IEmpresaServicio {
 
@@ -26,7 +25,9 @@ public interface IEmpresaServicio {
 
         Usuario buscarCliente(String cedula);
 
-        void cambiarContrasenia(String contraseniaantigua, String contraseniaantiguaverificacion, String contrasenianueva, Usuario usuario)throws Exception;
+        Usuario buscarUsuario(String correo);
+
+        void cambiarContrasenia(String contrasenianueva, Usuario usuario)throws Exception;
 
         //AlojamientoServicio
         void agregarCasa(String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes, String costoAdicional)throws Exception;
@@ -35,11 +36,13 @@ public interface IEmpresaServicio {
 
         void agregarHotel(String nombre, String descripcion, Ciudad ciudad, Image foto)throws Exception;
 
+        void agregarAlojamiento(String alojamiento, String nombre, String descripcion, Ciudad ciudad, Image foto, String precioporNoche, int capacidadHuespedes, String costoAdicional)throws Exception;
+
         ArrayList<Alojamiento> listarAlojamientos();
 
         ArrayList<Alojamiento> listarAlojamientosPrincipales();
 
-        ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes);
+        ArrayList<Alojamiento> filtrarAlojamientos(Class<?> tipoAlojamiento, Ciudad ciudad, int capacidadHuespedes, String nombre);
 
         Alojamiento buscarAlojamiento(String nombre);
 
@@ -54,7 +57,13 @@ public interface IEmpresaServicio {
 
         Oferta buscarOferta(String nombre);
 
+        ArrayList<Oferta> filtrarOferta(String nombre);
+
         ArrayList<Oferta> listarOfertas();
+
+        void añadirOfertaAlojamiento(Oferta oferta,Alojamiento alojamiento)throws Exception;
+
+        void eliminarOfertaAlojamiento(Oferta oferta,Alojamiento alojamiento)throws Exception;
 
         void editarOferta(Oferta oferta, String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, String valorDescuento, int diasReserva)throws Exception;
 
@@ -72,13 +81,15 @@ public interface IEmpresaServicio {
 
         //Varios
 
-        void agregarResenia(Cliente cliente,Alojamiento alojamiento ,String titulo,String descripcion,int valoracion, Reserva reserva)throws Exception;
+        void agregarResenia(Cliente cliente, String titulo,String descripcion,int valoracion, Reserva reserva)throws Exception;
 
-        void eliminarResenia(Cliente cliente,Alojamiento alojamiento, Resenia resenia)throws Exception;
+        void eliminarResenia(Cliente cliente, Resenia resenia)throws Exception;
 
         ArrayList<Resenia> listarResenias(Cliente cliente);
 
-        void RecargarBilletera(Cliente cliente, String valorRecarga)throws Exception;
+        void recargarBilletera(Cliente cliente, String valorRecarga)throws Exception;
+
+        float consultarSaldo(Cliente cliente);
 
         void agregarHabitacion(Hotel hotel, String numeroHabitacion, String descripcion, String costoHabitacion, int capacidadhuespedes, Image foto)throws Exception;
 
@@ -91,4 +102,8 @@ public interface IEmpresaServicio {
         void eliminarServicio(Alojamiento alojamiento, String servicio)throws Exception;
 
         ArrayList<String> listarServicios(Alojamiento alojamiento);
+
+        ArrayList<Hotel> listarHoteles();
+
+        ArrayList<Cliente> listarClientes();
 }

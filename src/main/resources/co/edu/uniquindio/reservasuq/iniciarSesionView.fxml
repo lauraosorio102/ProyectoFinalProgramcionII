@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.IniciarSesionController">
    <children>
       <Pane prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #0c25c3;">
          <children>
@@ -20,7 +22,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Button fx:id="buttonVolverIniciarSesion" layoutX="499.0" layoutY="19.0" mnemonicParsing="false" text="Volver " />
+            <Button fx:id="buttonVolverIniciarSesion" layoutX="499.0" layoutY="19.0" mnemonicParsing="false" onAction="#VolverAction" text="Volver " />
          </children>
       </Pane>
       <Label layoutX="198.0" layoutY="114.0" prefHeight="25.0" prefWidth="237.0" text="Iniciar sesion">
@@ -31,7 +33,8 @@
       <TextField fx:id="txtCorreoIniciarSesion" layoutX="236.0" layoutY="180.0" />
       <Label layoutX="178.0" layoutY="184.0" text="Correo " />
       <Label layoutX="166.0" layoutY="234.0" text="Contraseña " />
-      <TextField fx:id="txtContraseñaIniciarSesion" layoutX="236.0" layoutY="230.0" />
-      <Button fx:id="buttonIniciarIniciarSesion" layoutX="257.0" layoutY="299.0" mnemonicParsing="false" text="Iniciar Sesión" />
+      <Button fx:id="buttonIniciarIniciarSesion" layoutX="257.0" layoutY="299.0" mnemonicParsing="false" onAction="#IniciarSesionAction" text="Iniciar Sesión" />
+      <PasswordField fx:id="txtContraseñaIniciarSesion" layoutX="236.0" layoutY="230.0" />
+      <Hyperlink layoutX="235.0" layoutY="263.0" onAction="#OlvideContraseñaAction" text="Olvide mi contraseña :(" />
    </children>
 </Pane>

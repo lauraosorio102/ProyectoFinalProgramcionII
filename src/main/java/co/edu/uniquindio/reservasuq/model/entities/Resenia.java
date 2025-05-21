@@ -4,10 +4,22 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Builder
 @Getter
 @Setter
-public class Resenia {
-    private String titulo, descripcion;
+public class Resenia implements Serializable {
+    private String titulo, descripcion,nombreAlojamiento,nombreCliente;
     private int Valoracion;
+
+    public String toString() {
+        return "Resenia{" +
+                "titulo='" + titulo + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", nombreAlojamiento='" + nombreAlojamiento + '\'' +
+                ", nombreCliente='" + nombreCliente + '\'' +
+                ", Valoracion=" + Valoracion +
+                '}' + "\n";
+    }
 }

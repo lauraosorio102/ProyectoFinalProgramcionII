@@ -56,7 +56,7 @@ public class UsuarioServicio {
     public Usuario buscarUsuario(String correo) {
         ArrayList<Usuario> usuarios = listarUsuarios();
         for (Usuario usuario : usuarios) {
-            if (usuario.getCorreo().equals(correo)) {
+            if (usuario.getCorreo().equalsIgnoreCase(correo)) {
                 return usuario;
             }
         }
@@ -76,6 +76,7 @@ public class UsuarioServicio {
             String codigoinput = ValidacionCodigo.pedirCodigoPorInterfaz();
             if (codigoinput.equals(codigo)){
                 usuario.setEstado(true);
+                usuarioRepository.guardarDatos();
             }else{
                 throw new Exception("Codigo de verificación incorrecto");
             }
@@ -86,20 +87,18 @@ public class UsuarioServicio {
     public Usuario verificarCredenciales(String correo, String contrasenia){
         ArrayList<Usuario> usuarios = listarUsuarios();
         for (Usuario usuario : usuarios) {
-            if (usuario.getCorreo().equals(correo) && usuario.getContrasenia().equals(contrasenia)) {
+            if (usuario.getCorreo().equalsIgnoreCase(correo) && usuario.getContrasenia().equals(contrasenia)) {
                 return usuario;
             }
         }
         return null;
     }
 
-    public void cambiarContrasenia(String contraseniavieja, String contraseniaviejavalidacion, String contrasenianueva, Usuario usuario)throws Exception {
-        if (contrasenianueva.isEmpty() || contraseniavieja.isEmpty() || contraseniaviejavalidacion.isEmpty())throw  new Exception("Rellene todos los campos");
-        if (!contraseniavieja.equals(contraseniaviejavalidacion)) throw new Exception("Las contraseñas no coinciden");
-        if (!contraseniavieja.equals(usuario.getContrasenia())) throw new Exception("Contraseña incorrecta");
+    public void cambiarContrasenia(String contrasenianueva, Usuario usuario)throws Exception {
+        if (contrasenianueva.isEmpty())throw  new Exception("Rellene todos los campos");
         if (contrasenianueva.equals(usuario.getContrasenia()))throw new Exception("La contraseña nueva debe ser diferente a la actual");
         String codigo = ValidacionCodigo.generarCodigo();
-        EnvioEmail.enviarNotificacion(usuario.getContrasenia(), "Codigo de verificación", "Su codigo de verificación es:" + codigo );
+        EnvioEmail.enviarNotificacion(usuario.getCorreo(), "Codigo de verificación", "Su codigo de verificación es:" + codigo );
         String codigoinput = ValidacionCodigo.pedirCodigoPorInterfaz();
         if (codigoinput.equals(codigo)){
             usuario.setContrasenia(contrasenianueva);
@@ -112,7 +111,7 @@ public class UsuarioServicio {
     public void eliminarCliente(Cliente cliente, String correo, String contrasenia) throws Exception {
         if (correo.isEmpty()||contrasenia.isEmpty()) throw new Exception("Rellene los datos.");
         if (verificarCredenciales(correo,contrasenia)== null||!cliente.equals(verificarCredenciales(correo,contrasenia))) throw new Exception("Credenciales invalidas");
-        usuarioRepository.eliminarCliente(cliente);
+        cliente.setEstado(false);
     }
 
     public void editarCliente(Cliente cliente, String nombre, String telefono)throws Exception {
@@ -129,5 +128,20 @@ public class UsuarioServicio {
 
     public void guardarDatos(){
         usuarioRepository.guardarDatos();
+    }
+
+    public float consultarSaldo(Cliente cliente) {
+        return cliente.consultarSaldo();
+    }
+
+    public ArrayList<Cliente> listarClientes() {
+        ArrayList<Usuario> usuarios = listarUsuarios();
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        for (Usuario usuario : usuarios) {
+            if (usuario instanceof Cliente) {
+                clientes.add((Cliente) usuario);
+            }
+        }
+        return clientes;
     }
 }

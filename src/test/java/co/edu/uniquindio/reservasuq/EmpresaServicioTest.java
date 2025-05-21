@@ -1,6 +1,9 @@
 package co.edu.uniquindio.reservasuq;
 
+import co.edu.uniquindio.reservasuq.controllers.ControladorPrincipal;
 import co.edu.uniquindio.reservasuq.model.entities.Ciudad;
+import co.edu.uniquindio.reservasuq.model.entities.Cliente;
+import co.edu.uniquindio.reservasuq.model.factory.Casa;
 import co.edu.uniquindio.reservasuq.model.factory.Hotel;
 import co.edu.uniquindio.reservasuq.services.EmpresaServicio;
 import javafx.scene.image.Image;
@@ -12,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EmpresaServicioTest {
 
-    EmpresaServicio empresaServicio = new EmpresaServicio();
+    EmpresaServicio empresaServicio = ControladorPrincipal.getInstancia().getEmpresaServicio();
 
     @Test
     public void agregarClienteTest() throws Exception {
@@ -46,6 +49,8 @@ public class EmpresaServicioTest {
         assertThrows(Exception.class,
                 () -> empresaServicio.agregarCliente("Pepitoperez@gmail.com", "1234", "1234567890", "Pepito", "3124567890"),
                 "Debería lanzar excepción por cliente ya existente");
+
+        empresaServicio.eliminarCliente((Cliente) empresaServicio.buscarCliente("1234567890"),"Pepitoperez@gmail.com","1234");
     }
 
     @Test
@@ -112,5 +117,7 @@ public class EmpresaServicioTest {
                 () -> empresaServicio.agregarCasa(nombreValido, descripcionValida, ciudadValida,
                         imagenValida, precioValido, capacidadValida, costoAdicionalValido),
                 "Debería fallar por casa duplicada en la misma ciudad");
+
+        empresaServicio.eliminarAlojamiento(empresaServicio.buscarAlojamiento(nombreValido));
     }
 }

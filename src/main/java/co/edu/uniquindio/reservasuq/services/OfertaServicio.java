@@ -30,7 +30,7 @@ public class OfertaServicio {
             if (fechainicial.isBefore(LocalDate.now())) throw new Exception("Fecha inicial no valida");
             fechas = guardarFechas(fechainicial, diasOferta);
         }
-        Oferta oferta = Oferta.builder().nombre(nombre).fechasdescuento(fechas).huespedes(cantidadhuespedes).valorDescuento(descuento).diasReserva(diasReserva).build();
+        Oferta oferta = Oferta.builder().nombre(nombre).fechasdescuento(fechas).huespedes(cantidadhuespedes).valorDescuento(descuento).diasReserva(diasReserva).alojamientos(new ArrayList<>()).build();
         ofertaRepository.agregarOferta(oferta);
     }
 
@@ -57,6 +57,15 @@ public class OfertaServicio {
             if (oferta.getNombre().equals(nombre)) return oferta;
         }
         return null;
+    }
+
+    public ArrayList<Oferta> filtrarOferta(String nombre) {
+        ArrayList<Oferta> ofertas = listarOfertas();
+        ArrayList<Oferta> filtrados = new ArrayList<>();
+        for (Oferta oferta : ofertas) {
+            if (oferta.getNombre().toLowerCase().contains(nombre.toLowerCase())) filtrados.add(oferta);
+        }
+        return filtrados;
     }
 
     public ArrayList<Oferta> listarOfertas() {

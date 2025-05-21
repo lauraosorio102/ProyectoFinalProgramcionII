@@ -5,13 +5,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Builder
 @Getter
 @Setter
-public class Oferta {
+public class Oferta implements Serializable {
     private String nombre;
     private float valorDescuento;
 
@@ -34,5 +35,23 @@ public class Oferta {
         }
         if (cumple) return precio - precio*valorDescuento/100;
         return precio;
+    }
+
+    public void agregarAlojamiento(Alojamiento alojamiento) throws Exception {
+        if (alojamiento == null) throw new Exception("Debe seleccionar un alojamiento.");
+        if (!alojamientos.contains(alojamiento)){
+            alojamientos.add(alojamiento);
+        }else{
+            throw new Exception("Esta oferta ya tiene ese alojamiento.");
+        }
+    }
+
+    public void eliminarAlojamiento(Alojamiento alojamiento) throws Exception {
+        if (alojamiento == null) throw new Exception("Debe seleccionar un alojamiento.");
+        if (alojamientos.contains(alojamiento)){
+            alojamientos.remove(alojamiento);
+        }else{
+            throw new Exception("Esta oferta no tiene ese alojamiento.");
+        }
     }
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.ReservasUQAdminController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #0c25c3;" VBox.vgrow="NEVER">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="262.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label prefHeight="25.0" prefWidth="237.0" text="Administrar">
+                     <font>
+                        <Font name="System Bold Italic" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="237.0" text="Reservas UQ">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="buttonCerrarsesionReservas" mnemonicParsing="false" onAction="#CerrarSesionAction" text="cerrar sesion ">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="25.0" right="25.0" top="25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TabPane fx:id="tabpane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="307.0" prefWidth="600.0" style="-fx-background-color: #fce060;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+          <Tab fx:id="tab1" text="Gestionar Alojamientos" />
+          <Tab fx:id="tab2" text="Gestionar Habitaciones" />
+            <Tab fx:id="tab3" text="Gestionar Ofertas" />
+            <Tab fx:id="tab4" text="Gestionar Servicios" />
+            <Tab fx:id="tab5" text="Alojamientos" />
+            <Tab fx:id="tab6" text="Ofertas" />
+            <Tab fx:id="tab7" text="Cambiar Contraseña" />
+            <Tab fx:id="tab8" text="Lista de clientes" />
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>

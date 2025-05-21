@@ -4,9 +4,11 @@ import co.edu.uniquindio.reservasuq.utils.EnvioEmail;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public abstract class Usuario {
+public abstract class Usuario implements Serializable {
     private String correo, contrasenia;
     private boolean estado;
 

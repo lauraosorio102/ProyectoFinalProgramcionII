@@ -2,38 +2,46 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="826.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.GestionReseñaController">
    <children>
-      <Button fx:id="buttonAnadirGestionReseña" layoutX="376.0" layoutY="360.0" mnemonicParsing="false" text="Anadir" />
-      <TableView fx:id="tableAlojamientosGestionReseña" layoutX="15.0" layoutY="60.0" prefHeight="243.0" prefWidth="287.0">
+      <Button fx:id="buttonAnadirGestionReseña" layoutX="608.0" layoutY="369.0" mnemonicParsing="false" onAction="#AñadirAction" text="Anadir" />
+      <TableView fx:id="tableAlojamientosGestionReseña" layoutX="15.0" layoutY="60.0" prefHeight="243.0" prefWidth="436.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="columnFecha" prefWidth="90.0" text="Fecha Reserva" />
+            <TableColumn fx:id="columnNombre" prefWidth="106.0" text="Nombre" />
+            <TableColumn fx:id="columnDescripcionalojamiento" prefWidth="93.0" text="Descripcion" />
+            <TableColumn fx:id="columnCiudad" prefWidth="72.0" text="Ciudad" />
+            <TableColumn fx:id="columnfoto" prefWidth="75.0" text="Foto" />
          </columns>
       </TableView>
-      <TableView fx:id="tableReseñasGestionReseña" layoutX="307.0" layoutY="60.0" prefHeight="243.0" prefWidth="280.0">
+      <TableView fx:id="tableReseñasGestionReseña" layoutX="503.0" layoutY="60.0" prefHeight="243.0" prefWidth="315.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="columntitulo" prefWidth="75.0" text="Titulo" />
+            <TableColumn fx:id="columnDescripcionReseña" prefWidth="89.0" text="Descripcion" />
+            <TableColumn fx:id="columnValoracion" prefWidth="73.0" text="Valoración" />
+            <TableColumn fx:id="columnNombreAlojamiento" prefWidth="75.0" text="Alojamiento" />
          </columns>
       </TableView>
-      <Label layoutX="215.0" layoutY="14.0" text="Gestion Reseña ">
+      <Label layoutX="331.0" layoutY="14.0" text="Gestion Reseña ">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEliminarGestionReseña" layoutX="468.0" layoutY="360.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="buttonEliminarGestionReseña" layoutX="700.0" layoutY="369.0" mnemonicParsing="false" onAction="#EliminarAction" text="Eliminar" />
       <Label layoutX="64.0" layoutY="317.0" text="Titulo:" />
       <TextField fx:id="txtDescripcionGestionReseña" layoutX="158.0" layoutY="348.0" />
       <TextField fx:id="txtTituloGestionReseña" layoutX="158.0" layoutY="313.0" />
       <Label layoutX="64.0" layoutY="352.0" text="Descripcion:" />
-      <Label layoutX="32.0" layoutY="38.0" text="Tabla Alojamientos " />
-      <Label layoutX="468.0" layoutY="38.0" text="Tabla Reseñas  " />
+      <Label layoutX="32.0" layoutY="38.0" text="Reservas" />
+      <Label layoutX="503.0" layoutY="38.0" text="Reseñas" />
+      <Spinner fx:id="SpinnerValoración" layoutX="158.0" layoutY="385.0" />
+      <Label layoutX="68.0" layoutY="389.0" text="Valoración" />
    </children>
 </Pane>

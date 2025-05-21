@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="814.0" prefWidth="1515.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.GestionReservaController">
    <children>
-      <Button fx:id="buttonAgregarGestionReserva" layoutX="376.0" layoutY="360.0" mnemonicParsing="false" text="Agregar" />
-      <TableView fx:id="tableAlojamientosGestionReserva" layoutX="15.0" layoutY="60.0" prefHeight="234.0" prefWidth="205.0">
+      <Button fx:id="buttonAgregarGestionReserva" layoutX="1026.0" layoutY="750.0" mnemonicParsing="false" onAction="#HacerReservaAction" prefHeight="25.0" prefWidth="102.0" text="Hacer Reserva" />
+      <TableView fx:id="tableReservas" layoutX="1026.0" layoutY="62.0" prefHeight="675.0" prefWidth="475.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-         </columns>
-      </TableView>
-      <TableView fx:id="tableReservasGestionReserva" layoutX="374.0" layoutY="60.0" prefHeight="243.0" prefWidth="213.0">
-         <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="columnNombreAlojamientoReserva" prefWidth="94.0" text="Nombre Alojamiento" />
+            <TableColumn fx:id="columnNombreClienteReserva" prefWidth="103.0" text="Nombre Cliente" />
+            <TableColumn fx:id="columnCantidadHuespedesReserva" prefWidth="125.0" text="Cantidad huespedes" />
+            <TableColumn fx:id="columnFechasReserva" text="Fechas" />
+            <TableColumn fx:id="columnCostoReserva" prefWidth="72.0" text="Costo" />
          </columns>
       </TableView>
       <Label layoutX="215.0" layoutY="14.0" text="Gestion Reserva ">
@@ -29,14 +29,66 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEliminarGestionReserva" layoutX="468.0" layoutY="360.0" mnemonicParsing="false" text="Eliminar" />
-      <Label layoutX="18.0" layoutY="317.0" text="Cantidad de Huespedes: " />
-      <Label layoutX="18.0" layoutY="352.0" text="Dias de la reserva:" />
-      <Label layoutX="32.0" layoutY="38.0" text="Tabla Alojamientos " />
-      <Label layoutX="468.0" layoutY="38.0" text="Tabla Reservas   " />
-      <Spinner fx:id="spinnerHuespedesGestionreserva" layoutX="158.0" layoutY="313.0" />
-      <Spinner fx:id="spinnerDiasReservaGestionreserva" layoutX="158.0" layoutY="348.0" />
-      <DatePicker fx:id="dateFechaGestionReserva" layoutX="413.0" layoutY="313.0" />
-      <Label layoutX="369.0" layoutY="317.0" text="Fecha:" />
+      <Button fx:id="buttonEliminarGestionReserva" layoutX="1395.0" layoutY="750.0" mnemonicParsing="false" onAction="#CancelarReservaAction" text="Cancelar Reserva" />
+      <Label layoutX="731.0" layoutY="440.0" text="Cantidad de Huespedes: " />
+      <Label layoutX="731.0" layoutY="402.0" text="Dias de la reserva:" />
+      <Label layoutX="1120.0" layoutY="40.0" text="Tabla Reservas   " />
+      <Spinner fx:id="spinnerHuespedesGestionreserva" layoutX="871.0" layoutY="436.0" />
+      <Spinner fx:id="spinnerDiasReservaGestionreserva" layoutX="871.0" layoutY="398.0" />
+      <DatePicker fx:id="dateFechaGestionReserva" layoutX="846.0" layoutY="363.0" />
+      <Label layoutX="802.0" layoutY="367.0" text="Fecha:" />
+      <TableView fx:id="tableAlojamientos" layoutX="14.0" layoutY="71.0" prefHeight="234.0" prefWidth="639.0">
+         <columns>
+            <TableColumn fx:id="columnNombreAlojamiento" prefWidth="58.0" text="Nombre" />
+            <TableColumn fx:id="columnDescripcion" prefWidth="75.0" text="Descripcion" />
+            <TableColumn fx:id="columnTipoAlojamiento" prefWidth="120.0" text="Tipo de alojamiento" />
+            <TableColumn fx:id="columnciudadAlojamiento" prefWidth="64.0" text="Ciudad" />
+            <TableColumn fx:id="columnhuespedesAlojamiento" prefWidth="120.0" text="Capacidad huespedes" />
+            <TableColumn fx:id="columnPreciopornoche" prefWidth="109.0" text="Precio por noche" />
+            <TableColumn fx:id="columnCosteAdicionalAlojamiento" prefWidth="94.0" text="Coste Adicional" />
+         </columns>
+      </TableView>
+      <Label layoutX="677.0" layoutY="111.0" text="Nombre:" />
+      <Label layoutX="14.0" layoutY="55.0" text="Alojamientos" />
+      <Spinner fx:id="spinnerHuespedesfiltro" layoutX="803.0" layoutY="208.0" />
+      <TextField fx:id="txtnombrefiltro" layoutX="804.0" layoutY="107.0" />
+      <Label layoutX="679.0" layoutY="212.0" prefWidth="133.0" text="Capacidad huespedes:" />
+      <ComboBox fx:id="comboTipofiltro" layoutX="803.0" layoutY="139.0" onAction="#filtrarAction" prefWidth="150.0" />
+      <ComboBox fx:id="combociudadfiltro" layoutX="802.0" layoutY="174.0" onAction="#filtrarAction" prefWidth="150.0" />
+      <Label layoutX="677.0" layoutY="143.0" text="Tipo:" />
+      <Label layoutX="677.0" layoutY="178.0" text="Ciudad:" />
+      <Label layoutX="777.0" layoutY="81.0" text="Filtrar por:" />
+      <Button fx:id="btnlimpiarfiltros" layoutX="677.0" layoutY="77.0" mnemonicParsing="false" onAction="#LimpiarFiltrosAction" text="Limpiar filtros" />
+      <Label layoutX="679.0" layoutY="249.0" text="Servicios incluidos:" />
+      <Button fx:id="ButtonVerServicios" layoutX="845.0" layoutY="245.0" mnemonicParsing="false" onAction="#MostrarServiciosAction" prefHeight="25.0" prefWidth="149.0" text="Ver servicios" />
+      <Label layoutX="679.0" layoutY="279.0" text="Reseñas de este alojamiento:" />
+      <Button fx:id="btnReseñas" layoutX="845.0" layoutY="275.0" mnemonicParsing="false" onAction="#MostrarReseñasAction" prefHeight="25.0" prefWidth="149.0" text="Ver reseñas" />
+      <ImageView fx:id="imgfoto" fitHeight="219.0" fitWidth="254.0" layoutX="59.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="23.0" layoutY="407.0" text="Foto:" />
+      <TableView fx:id="tableHabitaciones" layoutX="18.0" layoutY="566.0" prefHeight="234.0" prefWidth="639.0">
+         <columns>
+            <TableColumn fx:id="columnNumeroHabitacion" prefWidth="85.0" text="# Habitacion" />
+            <TableColumn fx:id="columnDescripcionHabitacion" prefWidth="134.0" text="Descripcion" />
+            <TableColumn fx:id="columnTipoHabitacion" prefWidth="122.0" text="Tipo de alojamiento" />
+            <TableColumn fx:id="columnCiudadHabitacion" prefWidth="60.0" text="Ciudad" />
+            <TableColumn fx:id="columnCapacidadHuespedes" prefWidth="140.0" text="Capacidad huespedes" />
+            <TableColumn fx:id="columnPrecioPorNocheHabitacion" prefWidth="97.0" text="Precio por noche" />
+         </columns>
+      </TableView>
+      <Label fx:id="labelFotohabitaciones" layoutX="23.0" layoutY="549.0" text="Habitaciones" />
+      <ImageView fx:id="imgFotoHabitacion" fitHeight="219.0" fitWidth="254.0" layoutX="403.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="LabelFotohabitacion" layoutX="313.0" layoutY="411.0" text="Foto habitacion:" />
+      <Spinner fx:id="spinnerHuespedesHabitacion" layoutX="801.0" layoutY="668.0" />
+      <Label fx:id="LabelCapacidadHabitacion" layoutX="677.0" layoutY="672.0" prefWidth="133.0" text="Capacidad huespedes:" />
+      <ComboBox fx:id="combociudadfiltroHabitacion" layoutX="800.0" layoutY="634.0" onAction="#filtrarHabitacionAction" prefWidth="150.0" />
+      <Label fx:id="LabelCiudadHabitacion" layoutX="675.0" layoutY="638.0" text="Ciudad:" />
+      <Label fx:id="LabelfiltroHabitaciones" layoutX="773.0" layoutY="604.0" text="Filtrar por:" />
+      <Button fx:id="btnlimpiarfiltrosHabitacion" layoutX="673.0" layoutY="600.0" mnemonicParsing="false" onAction="#LimpiarFiltrosHabitacionAction" text="Limpiar filtros" />
+      <Label fx:id="LabelServiciosHabitacion" layoutX="674.0" layoutY="715.0" text="Servicios incluidos:" />
+      <Button fx:id="ButtonServicioshabitacion" layoutX="840.0" layoutY="711.0" mnemonicParsing="false" onAction="#MostrarServiciosHabitacionAction" prefHeight="25.0" prefWidth="149.0" text="Ver servicios" />
+      <Label fx:id="LabelReseñaHabitacion" layoutX="674.0" layoutY="745.0" text="Reseñas de este alojamiento:" />
+      <Button fx:id="btnReseñasHabitaciones" layoutX="840.0" layoutY="741.0" mnemonicParsing="false" onAction="#MostrarReseñasHabitacionAction" prefHeight="25.0" prefWidth="149.0" text="Ver reseñas" />
+      <Button fx:id="btndeseleccionarHabitacion" layoutX="567.0" layoutY="538.0" mnemonicParsing="false" onAction="#DeseleccionarHabitacionAction" text="Deseleccionar" />
+      <Button layoutX="563.0" layoutY="45.0" mnemonicParsing="false" onAction="#DeseleccionarAlojamientoAction" text="Deseleccionar" />
    </children>
 </Pane>
