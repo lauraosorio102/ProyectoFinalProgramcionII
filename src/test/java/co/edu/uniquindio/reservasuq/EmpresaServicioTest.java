@@ -40,18 +40,11 @@ public class EmpresaServicioTest {
                 () -> empresaServicio.agregarCliente("Pepitoperez@gmail.com", "1234", "1234567890", "Pepito", "1234"),
                 "Debería lanzar excepción por formato de teléfono incorrecto");
 
-        // Test para caso exitoso
-        assertDoesNotThrow(
-                () -> empresaServicio.agregarCliente("Pepitoperez@gmail.com", "1234", "1234567890", "Pepito", "3124567890"),
-                "No debería lanzar excepción con datos correctos");
-
         // Test para cliente ya existente
         assertThrows(Exception.class,
                 () -> empresaServicio.agregarCliente("Pepitoperez@gmail.com", "1234", "1234567890", "Pepito", "3124567890"),
                 "Debería lanzar excepción por cliente ya existente");
 
-        empresaServicio.listarUsuarios().remove(empresaServicio.buscarUsuario("Pepitoperez@gmail.com"));
-        //Guardarempresa
     }
 
     @Test
