@@ -18,7 +18,7 @@ public class EmpresaServicioTest {
     EmpresaServicio empresaServicio = ControladorPrincipal.getInstancia().getEmpresaServicio();
 
     @Test
-    public void agregarClienteTest() throws Exception {
+    public void agregarClienteTest(){
         // Test para campos vacíos
         Exception exception = assertThrows(Exception.class,
                 () -> empresaServicio.agregarCliente("", "", "", "", ""));
@@ -50,7 +50,8 @@ public class EmpresaServicioTest {
                 () -> empresaServicio.agregarCliente("Pepitoperez@gmail.com", "1234", "1234567890", "Pepito", "3124567890"),
                 "Debería lanzar excepción por cliente ya existente");
 
-        empresaServicio.eliminarCliente((Cliente) empresaServicio.buscarCliente("1234567890"),"Pepitoperez@gmail.com","1234");
+        empresaServicio.listarUsuarios().remove(empresaServicio.buscarUsuario("Pepitoperez@gmail.com"));
+        //Guardarempresa
     }
 
     @Test
