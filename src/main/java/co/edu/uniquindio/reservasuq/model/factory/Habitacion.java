@@ -18,14 +18,13 @@ public class Habitacion extends Alojamiento implements Serializable {
         this.setCiudad(hotel.getCiudad());
     }
 
-
     public float calcularPrecioTotal(int dias) {
         return this.getPrecioPorNoche() * dias;
     }
 
     public String toString() {
         return super.toString()+"Habitacion{" +
-                "hotel=" + hotel +
+                "hotel=" + hotel.getNombre() +
                 '}';
     }
 }

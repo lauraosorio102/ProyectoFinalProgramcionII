@@ -206,6 +206,7 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public void agregarHabitacion(Hotel hotel, String numeroHabitacion, String descripcion, String costoHabitacion, int capacidadhuespedes, Image foto) throws Exception {
         hotel.agregarHabitacion(numeroHabitacion,descripcion,costoHabitacion,capacidadhuespedes,foto);
+        alojamientoServicio.guardarHabitacion(new Habitacion(numeroHabitacion,descripcion,foto,capacidadhuespedes,hotel,Float.parseFloat(costoHabitacion)));
         alojamientoServicio.guardarDatos();
     }
 
@@ -215,6 +216,7 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public void eliminarHabitacion(Hotel hotel, Habitacion habitacion) throws Exception {
         hotel.eliminarHabitacion(habitacion);
+        alojamientoServicio.eliminarHabitacion(habitacion);
         alojamientoServicio.guardarDatos();
     }
 

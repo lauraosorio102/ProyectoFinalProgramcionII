@@ -129,15 +129,20 @@ public class ListaAlojamientosController implements Initializable {
     void MostrarReseñasAction(ActionEvent event) {
         if (alojamientoseleccionado != null) {
             if (habitacionseleccionada!= null) {
-                controladorPrincipal.crearAlerta(habitacionseleccionada.getResenias().toString(),Alert.AlertType.INFORMATION);
+                controladorPrincipal.crearAlerta(habitacionseleccionada.listarresenias().toString(),Alert.AlertType.INFORMATION);
             }else{
-                controladorPrincipal.crearAlerta(alojamientoseleccionado.getResenias().toString(), Alert.AlertType.INFORMATION);
+                controladorPrincipal.crearAlerta(alojamientoseleccionado.listarresenias().toString(), Alert.AlertType.INFORMATION);
             }
         }
     }
     @FXML
     void filtrarAction(ActionEvent event) {
         alojamientos.setAll(controladorPrincipal.getEmpresaServicio().filtrarAlojamientos(AlojamientoFactory.seleccionarTipoAlojamiento(comboTipofiltro.getValue()),combociudadfiltro.getValue(),spinnerHuespedesfiltro.getValue(),txtnombrefiltro.getText()));
+        for (Alojamiento alojamiento : alojamientos) {
+            if (alojamiento instanceof Habitacion) {
+                alojamientos.remove(alojamiento);
+            }
+        }
         tableAlojamientosGestionAlojamientos.setItems(alojamientos);
     }
 
@@ -145,9 +150,9 @@ public class ListaAlojamientosController implements Initializable {
     void MostrarServiciosAction(ActionEvent event) {
         if (alojamientoseleccionado != null) {
             if (habitacionseleccionada != null) {
-                controladorPrincipal.crearAlerta(habitacionseleccionada.getServicios().toString(), Alert.AlertType.INFORMATION);
+                controladorPrincipal.crearAlerta(alojamientoseleccionado.listarServicios() + habitacionseleccionada.listarServicios().toString(), Alert.AlertType.INFORMATION);
             }else{
-                controladorPrincipal.crearAlerta(alojamientoseleccionado.getServicios().toString(),Alert.AlertType.INFORMATION);
+                controladorPrincipal.crearAlerta(alojamientoseleccionado.listarServicios().toString(),Alert.AlertType.INFORMATION);
             }
         }
     }

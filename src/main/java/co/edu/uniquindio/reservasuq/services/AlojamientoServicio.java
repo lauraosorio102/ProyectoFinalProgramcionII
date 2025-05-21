@@ -179,4 +179,12 @@ public class AlojamientoServicio {
         }
         return filtrados;
     }
+
+    public void guardarHabitacion(Habitacion habitacion) {
+        alojamientoRepository.agregarAlojamiento(habitacion);
+    }
+
+    public void eliminarHabitacion(Habitacion habitacion) {
+        alojamientoRepository.eliminarAlojamiento(habitacion);
+    }
 }

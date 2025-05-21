@@ -81,6 +81,10 @@ public abstract class Alojamiento implements Serializable {
         resenias.remove(resenia);
     }
 
+    public ArrayList<Resenia> listarresenias() {
+        return resenias;
+    }
+
     public void agregarServicio(String servicio) throws Exception {
         if (servicios.contains(servicio)) {
             throw new Exception("El servicio ya existe");

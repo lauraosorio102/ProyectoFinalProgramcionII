@@ -205,7 +205,7 @@ public class GestionAlojamientoController implements Initializable {
 
         combociudad.setItems(FXCollections.observableArrayList(new ArrayList<>(Arrays.asList(Ciudad.values()))));
         combociudadfiltro.setItems(FXCollections.observableArrayList(new ArrayList<>(Arrays.asList(Ciudad.values()))));
-        cbxTipoAlojamientoGestionAlojamiento.setItems(FXCollections.observableArrayList(new ArrayList<>(Arrays.asList("Hotel", "Casa", "Apartamento", "Habitacion"))));
+        cbxTipoAlojamientoGestionAlojamiento.setItems(FXCollections.observableArrayList(new ArrayList<>(Arrays.asList("Hotel", "Casa", "Apartamento"))));
         comboTipofiltro.setItems(FXCollections.observableArrayList(new ArrayList<>(Arrays.asList("Hotel", "Casa", "Apartamento"))));
         spinnerHuespedesfiltro.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE));
         spinnercantidadHuespedesGestionAlojamiento2.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE));
