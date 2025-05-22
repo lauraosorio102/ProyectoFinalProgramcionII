@@ -189,23 +189,25 @@ public class ReservaServicio {
 
     public Map<Alojamiento, Float> promedioValoracion() {
         ArrayList<Reserva> reservas = listarReservas();
-        Map<Alojamiento,Float> sumatoria = new HashMap<>();
+        Map<Alojamiento, Float> sumatoria = new HashMap<>();
         Map<Alojamiento, Integer> contador = new HashMap<>();
         for (Reserva reserva : reservas) {
             Alojamiento alojamiento = reserva.getAlojamiento();
             if (alojamiento instanceof Habitacion) alojamiento = ((Habitacion) alojamiento).getHotel();
-
-            float sumaActual = sumatoria.getOrDefault(alojamiento, 0f);
-            int contadorActual = contador.getOrDefault(alojamiento, 0);
-
-            sumatoria.put(alojamiento, sumaActual + reserva.getPrecio());
-            contador.put(alojamiento, contadorActual + 1);
+            List<Resenia> resenias = alojamiento.getResenias();
+            if (resenias == null || resenias.isEmpty()) continue;
+            for (Resenia resenia : resenias) {
+                float sumaActual = sumatoria.getOrDefault(alojamiento, 0f);
+                int contadorActual = contador.getOrDefault(alojamiento, 0);
+                sumatoria.put(alojamiento, sumaActual + resenia.getValoracion());
+                contador.put(alojamiento, contadorActual + 1);
+            }
         }
         Map<Alojamiento, Float> promedioValoracion = new HashMap<>();
         for (Alojamiento alojamiento : sumatoria.keySet()) {
             float suma = sumatoria.get(alojamiento);
-            int contado = contador.get(alojamiento);
-            promedioValoracion.put(alojamiento, suma / contado);
+            int cantidad = contador.get(alojamiento);
+            promedioValoracion.put(alojamiento, suma / cantidad);
         }
         return promedioValoracion;
     }
