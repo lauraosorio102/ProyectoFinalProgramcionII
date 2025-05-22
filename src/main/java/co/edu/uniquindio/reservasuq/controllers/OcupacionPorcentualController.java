@@ -33,10 +33,9 @@ public class OcupacionPorcentualController implements Initializable {
     void GenerarReporteAction(ActionEvent event) {
         if (dateFechafin.getValue() != null && dateFechainicio.getValue() != null) {
             if (!dateFechainicio.getValue().isAfter(dateFechafin.getValue())) {
-                // Limpieza adecuada
+
                 barChart.getData().clear();
 
-                // Crear nueva serie para evitar reutilizar la anterior
                 XYChart.Series<String, Float> nuevaSerie = new XYChart.Series<>();
                 nuevaSerie.setName("Ocupación Porcentual");
 
@@ -52,9 +51,6 @@ public class OcupacionPorcentualController implements Initializable {
                 barChart.getData().add(nuevaSerie);
                 controladorPrincipal.crearAlerta("Reporte realizado correctamente", Alert.AlertType.INFORMATION);
 
-                // Resetear fechas
-                dateFechainicio.setValue(null);
-                dateFechafin.setValue(null);
             } else {
                 controladorPrincipal.crearAlerta("Rango de fechas inválido", Alert.AlertType.ERROR);
             }
