@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OlvideContraseñaController implements Initializable {
+public class OlvideContraseniaController implements Initializable {
 
     private ControladorPrincipal controladorPrincipal;
     private Usuario usuarioCorreo;
@@ -35,7 +35,7 @@ public class OlvideContraseñaController implements Initializable {
     @FXML
     private TextField txtCorreoIniciar;
 
-    public OlvideContraseñaController(){
+    public OlvideContraseniaController(){
         controladorPrincipal = ControladorPrincipal.getInstancia();
     }
     @FXML

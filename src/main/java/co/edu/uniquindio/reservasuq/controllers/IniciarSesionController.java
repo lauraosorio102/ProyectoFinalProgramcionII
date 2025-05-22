@@ -54,7 +54,7 @@ public class IniciarSesionController {
 
     @FXML
     void OlvideContraseñaAction(ActionEvent event) {
-        controladorPrincipal.abrirVentana("/co/edu/uniquindio/reservasuq/olvideContraseñaView.fxml");
+        controladorPrincipal.abrirVentana("/co/edu/uniquindio/reservasuq/olvideContraseniaView.fxml");
         controladorPrincipal.cerrarVentana(txtCorreoIniciarSesion);
     }
 }

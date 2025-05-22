@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GestionReseñaController implements Initializable {
+public class GestionReseniaController implements Initializable {
     private final ControladorPrincipal controladorPrincipal;
     private Sesion sesion;
     private Reserva reservaseleccionada;
@@ -107,7 +107,7 @@ public class GestionReseñaController implements Initializable {
         }
     }
 
-    public GestionReseñaController() {
+    public GestionReseniaController() {
         controladorPrincipal = ControladorPrincipal.getInstancia();
         sesion = Sesion.getInstance();
     }

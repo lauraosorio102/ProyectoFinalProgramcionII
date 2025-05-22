@@ -20,7 +20,7 @@ public class ReservasUQController implements Initializable {
     private ListaOfertasController listaOfertasController;
     private ListaAlojamientosController listaAlojamientosController;
     private GestionReservaController gestionReservaController;
-    private GestionReseñaController gestionReseñaController;
+    private GestionReseniaController gestionReseniaController;
 
     @FXML
     private Button buttonCerrarsesionReservas;
@@ -89,7 +89,7 @@ public class ReservasUQController implements Initializable {
             buttonIniciarSesionReservas.setVisible(false);
             try {
                 gestionReservaController = (GestionReservaController) cargarTab(tab2, "/co/edu/uniquindio/reservasuq/gestionReservaView.fxml");
-                gestionReseñaController = (GestionReseñaController) cargarTab(tab3,"/co/edu/uniquindio/reservasuq/gestionReseñaview.fxml");
+                gestionReseniaController = (GestionReseniaController) cargarTab(tab3, "/co/edu/uniquindio/reservasuq/gestionReseniaview.fxml");
                 cargarTab(tab4,"/co/edu/uniquindio/reservasuq/gestionarClienteView.fxml");
                 cargarTab(tab5, "/co/edu/uniquindio/reservasuq/recargarBilleteraView.fxml");
             }catch (Exception e) {
@@ -113,8 +113,8 @@ public class ReservasUQController implements Initializable {
             gestionReservaController.cargarReservas();
             gestionReservaController.cargarHabitaciones();
             gestionReservaController.cargarAlojamientos();
-            gestionReseñaController.cargarReseñas();
-            gestionReseñaController.cargarReservas();
+            gestionReseniaController.cargarReseñas();
+            gestionReseniaController.cargarReservas();
         }
         listaAlojamientosController.cargarAlojamientos();
         listaOfertasController.cargarOfertas();

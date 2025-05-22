@@ -83,7 +83,7 @@ public class ReservasUQAdminController implements Initializable {
             gestionServiciosController = (GestionServiciosController) cargarTab(tab4,"/co/edu/uniquindio/reservasuq/gestionServiciosView.fxml");
             listaAlojamientosController = (ListaAlojamientosController) cargarTab(tab5, "/co/edu/uniquindio/reservasuq/ListaAlojamientosView.fxml");
             listaOfertasController = (ListaOfertasController) cargarTab(tab6, "/co/edu/uniquindio/reservasuq/ListaOfertasView.fxml");
-            cargarTab(tab7,"/co/edu/uniquindio/reservasuq/cambiarContraseñaView.fxml");
+            cargarTab(tab7, "/co/edu/uniquindio/reservasuq/cambiarContraseniaView.fxml");
             listaClientesController = (ListaClientesController) cargarTab(tab8, "/co/edu/uniquindio/reservasuq/ListaClientesView.fxml");
             cargarTab(tab9,"/co/edu/uniquindio/reservasuq/ReportesView.fxml");
             reservaAdminController = (ReservaAdminController) cargarTab(tab10,"/co/edu/uniquindio/reservasuq/ReservaAdminView.fxml");

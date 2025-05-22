@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="326.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.CambiarContraseñaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="132.0" prefWidth="326.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.CambiarContraseniaController">
    <children>
       <Label layoutX="32.0" layoutY="53.0" text="Nueva Contraseña" />
       <Button fx:id="buttonCambiargestionarCliente" layoutX="113.0" layoutY="83.0" mnemonicParsing="false" onAction="#CambiarAction" text="Cambiar" />

@@ -11,7 +11,7 @@ import javafx.scene.control.PasswordField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CambiarContraseñaController implements Initializable {
+public class CambiarContraseniaController implements Initializable {
 
     private final ControladorPrincipal controladorPrincipal;
     private final Sesion sesion;
@@ -21,7 +21,7 @@ public class CambiarContraseñaController implements Initializable {
     @FXML
     private PasswordField txtNuevacontraseñaGestionarCliente;
 
-    public CambiarContraseñaController() {
+    public CambiarContraseniaController() {
         controladorPrincipal = ControladorPrincipal.getInstancia();
         sesion = Sesion.getInstance();
     }

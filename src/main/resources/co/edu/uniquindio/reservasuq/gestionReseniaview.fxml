@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="826.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.GestionReseñaController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="826.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.GestionReseniaController">
    <children>
       <Button fx:id="buttonAnadirGestionReseña" layoutX="608.0" layoutY="369.0" mnemonicParsing="false" onAction="#AñadirAction" text="Anadir" />
       <TableView fx:id="tableAlojamientosGestionReseña" layoutX="15.0" layoutY="60.0" prefHeight="243.0" prefWidth="436.0">
