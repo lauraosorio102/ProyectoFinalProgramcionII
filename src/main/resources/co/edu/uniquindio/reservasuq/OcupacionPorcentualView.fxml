@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="696.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.OcupacionPorcentualController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="1073.0" style="-fx-background-color: #fce060;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.OcupacionPorcentualController">
    <children>
-      <Label layoutX="144.0" layoutY="14.0" text="Ocupación porcentual por fechas">
+      <Label layoutX="345.0" layoutY="14.0" text="Ocupación porcentual por fechas">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <BarChart fx:id="barChart" layoutX="14.0" layoutY="189.0" prefHeight="400.0" prefWidth="652.0">
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="189.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="1022.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -26,8 +26,8 @@
       </BarChart>
       <DatePicker fx:id="dateFechainicio" layoutX="52.0" layoutY="69.0" />
       <Label layoutX="52.0" layoutY="46.0" text="Fecha inicio" />
-      <DatePicker fx:id="dateFechafin" layoutX="468.0" layoutY="68.0" />
-      <Label layoutX="468.0" layoutY="45.0" text="Fecha fin" />
-      <Button layoutX="297.0" layoutY="164.0" mnemonicParsing="false" onAction="#GenerarReporteAction" text="Generar reporte" />
+      <DatePicker fx:id="dateFechafin" layoutX="862.0" layoutY="62.0" />
+      <Label layoutX="862.0" layoutY="39.0" text="Fecha fin" />
+      <Button layoutX="465.0" layoutY="164.0" mnemonicParsing="false" onAction="#GenerarReporteAction" text="Generar reporte" />
    </children>
 </Pane>

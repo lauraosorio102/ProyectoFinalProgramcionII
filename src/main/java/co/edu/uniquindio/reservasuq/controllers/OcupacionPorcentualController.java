@@ -15,7 +15,6 @@ import java.util.ResourceBundle;
 
 public class OcupacionPorcentualController implements Initializable {
     private final ControladorPrincipal controladorPrincipal;
-    XYChart.Series<String,Float> series;
 
     @FXML
     private BarChart<String, Float> barChart;
@@ -32,30 +31,40 @@ public class OcupacionPorcentualController implements Initializable {
 
     @FXML
     void GenerarReporteAction(ActionEvent event) {
-        if (dateFechafin.getValue() != null&& dateFechainicio.getValue() != null) {
+        if (dateFechafin.getValue() != null && dateFechainicio.getValue() != null) {
             if (!dateFechainicio.getValue().isAfter(dateFechafin.getValue())) {
+                // Limpieza adecuada
                 barChart.getData().clear();
-                Map<Alojamiento,Float> ocupacion = controladorPrincipal.getEmpresaServicio().ocupacionPorcentual(dateFechainicio.getValue(),dateFechafin.getValue());
-                for (Map.Entry<Alojamiento,Float> entry : ocupacion.entrySet()) {
-                    series.getData().add(new XYChart.Data<>(entry.getKey().getNombre(), entry.getValue()));
+
+                // Crear nueva serie para evitar reutilizar la anterior
+                XYChart.Series<String, Float> nuevaSerie = new XYChart.Series<>();
+                nuevaSerie.setName("Ocupación Porcentual");
+
+                Map<Alojamiento, Float> ocupacion = controladorPrincipal.getEmpresaServicio()
+                        .ocupacionPorcentual(dateFechainicio.getValue(), dateFechafin.getValue());
+
+                for (Map.Entry<Alojamiento, Float> entry : ocupacion.entrySet()) {
+                    nuevaSerie.getData().add(
+                            new XYChart.Data<>(entry.getKey().getNombre(), entry.getValue())
+                    );
                 }
-                barChart.getData().clear();
-                barChart.getData().addAll(series);
+
+                barChart.getData().add(nuevaSerie);
                 controladorPrincipal.crearAlerta("Reporte realizado correctamente", Alert.AlertType.INFORMATION);
+
+                // Resetear fechas
                 dateFechainicio.setValue(null);
                 dateFechafin.setValue(null);
-            }else{
-                controladorPrincipal.crearAlerta("Rango de fechas invalido", Alert.AlertType.ERROR);
+            } else {
+                controladorPrincipal.crearAlerta("Rango de fechas inválido", Alert.AlertType.ERROR);
             }
-        }else{
+        } else {
             controladorPrincipal.crearAlerta("Selecciona las fechas primero", Alert.AlertType.INFORMATION);
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        series = new XYChart.Series<>();
-        series.setName("Ocupacion Porcentual");
         barChart.getData().clear();
     }
 }
