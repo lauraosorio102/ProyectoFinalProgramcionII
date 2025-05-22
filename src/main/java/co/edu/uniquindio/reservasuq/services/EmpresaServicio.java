@@ -142,10 +142,12 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public void añadirOfertaAlojamiento(Oferta oferta, Alojamiento alojamiento) throws Exception {
         oferta.agregarAlojamiento(alojamiento);
+        ofertasServicio.guardarDatos();
     }
 
     public void eliminarOfertaAlojamiento(Oferta oferta, Alojamiento alojamiento) throws Exception {
         oferta.eliminarAlojamiento(alojamiento);
+        ofertasServicio.guardarDatos();
     }
 
     public void editarOferta(Oferta oferta, String nombre, LocalDate fechainicial, int diasOferta, int cantidadhuespedes, String valorDescuento,int diasReserva) throws Exception {
@@ -184,6 +186,10 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public Map<Alojamiento, Float> ocupacionPorcentual(LocalDate fechainicial, LocalDate fechaFinal) {
         return reservaServicio.ocupacionPorcentual(fechainicial,fechaFinal);
+    }
+
+    public Map<Alojamiento, Float> promedioValoracion() {
+        return reservaServicio.promedioValoracion();
     }
 
     public void agregarResenia(Cliente cliente, String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {

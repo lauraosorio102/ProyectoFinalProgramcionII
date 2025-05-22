@@ -15,6 +15,7 @@ public class ReportesController implements Initializable {
     private AlojamientosPopularesCiudadController alojamientosPopularesCiudad;
     private GananciasTotalesController gananciasTotalesController;
     private GananciasTotalesTipoController gananciasTotalesTipoController;
+    private PromedioValoracionesController promedioValoracionesController;
 
     @FXML
     private Tab tab1;
@@ -29,6 +30,9 @@ public class ReportesController implements Initializable {
     private Tab tab4;
 
     @FXML
+    private Tab tab5;
+
+    @FXML
     private TabPane tabpane;
 
     @Override
@@ -38,6 +42,7 @@ public class ReportesController implements Initializable {
             gananciasTotalesController = (GananciasTotalesController) cargarTab(tab2, "/co/edu/uniquindio/reservasuq/GananciasTotalesView.fxml");
             gananciasTotalesTipoController = (GananciasTotalesTipoController) cargarTab(tab3, "/co/edu/uniquindio/reservasuq/GananciasTotalesTipoView.fxml");
             cargarTab(tab4,"/co/edu/uniquindio/reservasuq/OcupacionPorcentualView.fxml");
+            promedioValoracionesController = (PromedioValoracionesController) cargarTab(tab5, "/co/edu/uniquindio/reservasuq/PromedioValoracionesView.fxml");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,6 +62,7 @@ public class ReportesController implements Initializable {
         alojamientosPopularesCiudad.cargarAlojamientosPopulares();
         gananciasTotalesController.cargarDatos();
         gananciasTotalesTipoController.cargarDatos();
+        promedioValoracionesController.cargarDatos();
     }
 }
 

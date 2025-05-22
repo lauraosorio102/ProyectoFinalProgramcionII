@@ -19,9 +19,9 @@
           <TableColumn fx:id="columnValordescuento" prefWidth="120.0" text="Valor del descuento" />
             <TableColumn fx:id="columnfechaInicio" prefWidth="75.0" text="Fecha inicio" />
             <TableColumn fx:id="columnfechafin" prefWidth="75.0" text="Fecha fin" />
-            <TableColumn fx:id="columnhuespedesoferta" minWidth="0.0" prefWidth="75.0" text="Huespedes" />
-            <TableColumn fx:id="columndiasoferta" prefWidth="47.0" text="Dias" />
-            <TableColumn fx:id="columnAlojamientosOferta" prefWidth="195.0" text="Alojamientos" />
+            <TableColumn fx:id="columnhuespedesoferta" minWidth="0.0" prefWidth="82.0" text="Huespedes minimos" />
+            <TableColumn fx:id="columndiasoferta" prefWidth="81.0" text="Dias minimos" />
+            <TableColumn fx:id="columnAlojamientosOferta" prefWidth="154.0" text="Alojamientos" />
         </columns>
       </TableView>
    </children>

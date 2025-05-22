@@ -97,4 +97,8 @@ public class OfertaServicio {
         oferta.setHuespedes(cantidadhuespedes);
         ofertaRepository.guardarDatos();
     }
+
+    public void guardarDatos() {
+        ofertaRepository.guardarDatos();
+    }
 }

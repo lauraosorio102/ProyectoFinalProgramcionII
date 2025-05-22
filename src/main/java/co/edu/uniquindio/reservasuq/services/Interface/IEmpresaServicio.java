@@ -85,6 +85,8 @@ public interface IEmpresaServicio {
 
         Map<Alojamiento, Float> ocupacionPorcentual(LocalDate fechainicial, LocalDate fechaFinal);
 
+        Map<Alojamiento, Float> promedioValoracion();
+
         //Varios
 
         void agregarResenia(Cliente cliente, String titulo,String descripcion,int valoracion, Reserva reserva)throws Exception;

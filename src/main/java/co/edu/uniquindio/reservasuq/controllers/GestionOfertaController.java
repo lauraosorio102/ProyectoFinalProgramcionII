@@ -241,7 +241,7 @@ public class GestionOfertaController implements Initializable {
         if (ofertaseleccionada !=null){
             txtNombreGestionOferta.setText(ofertaseleccionada.getNombre());
             dateFechaGestionOferta.setValue(ofertaseleccionada.getFechasdescuento().getFirst());
-            spinnercantidadDiasGestionOferta.getValueFactory().setValue((int) ChronoUnit.DAYS.between(ofertaseleccionada.getFechasdescuento().getFirst(),ofertaseleccionada.getFechasdescuento().getLast()));
+            spinnercantidadDiasGestionOferta.getValueFactory().setValue((int) ChronoUnit.DAYS.between(ofertaseleccionada.getFechasdescuento().getFirst(),ofertaseleccionada.getFechasdescuento().getLast())+1);
             spinnerHuespedesGestionOferta.getValueFactory().setValue(ofertaseleccionada.getHuespedes());
             spinnerDiasReservaGestionOferta.getValueFactory().setValue(ofertaseleccionada.getDiasReserva());
             txtValorDescuentoGestionOferta.setText(""+ofertaseleccionada.getValorDescuento());

@@ -27,7 +27,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEliminarGestionOferta" layoutX="159.0" layoutY="326.0" mnemonicParsing="false" onAction="#EliminarAction" text="Eliminar" />
+      <Button fx:id="buttonEliminarGestionOferta" layoutX="330.0" layoutY="326.0" mnemonicParsing="false" onAction="#EliminarAction" text="Eliminar" />
       <Label layoutX="508.0" layoutY="87.0" text="Nombre:" />
       <Label layoutX="464.0" layoutY="162.0" text="Cantidad de dias:" />
       <Label layoutX="31.0" layoutY="59.0" text="Buscar por nombre:" />
@@ -37,11 +37,11 @@
       <DatePicker fx:id="dateFechaGestionOferta" layoutX="558.0" layoutY="118.0" />
       <Label layoutX="516.0" layoutY="122.0" text="Fecha:" />
       <TextField fx:id="txtBuscarNombreGestionOferta" layoutX="142.0" layoutY="55.0" />
-      <Button fx:id="buttonEditarGestionOferta" layoutX="113.0" layoutY="351.0" mnemonicParsing="false" onAction="#editarAction" text="Editar" />
+      <Button fx:id="buttonEditarGestionOferta" layoutX="187.0" layoutY="326.0" mnemonicParsing="false" onAction="#editarAction" prefHeight="25.0" prefWidth="59.0" text="Editar" />
       <TextField fx:id="txtNombreGestionOferta" layoutX="558.0" layoutY="83.0" />
-      <Label layoutX="445.0" layoutY="204.0" prefWidth="133.0" text="Cantidad huespedes:" />
+      <Label layoutX="443.0" layoutY="204.0" prefWidth="133.0" text="Huespedes minimos:" />
       <Spinner fx:id="spinnerDiasReservaGestionOferta" layoutX="558.0" layoutY="235.0" />
-      <Label layoutX="492.0" layoutY="239.0" prefWidth="133.0" text="Dias reserva:" />
+      <Label layoutX="443.0" layoutY="239.0" prefWidth="133.0" text="Dias minimos reserva:" />
       <TextField fx:id="txtValorDescuentoGestionOferta" layoutX="558.0" layoutY="305.0" />
       <Label layoutX="452.0" layoutY="310.0" text="Valor de descuento:" />
       <TableView fx:id="tableAlojamientosGestionOfertas" layoutX="741.0" layoutY="79.0" prefHeight="243.0" prefWidth="436.0">

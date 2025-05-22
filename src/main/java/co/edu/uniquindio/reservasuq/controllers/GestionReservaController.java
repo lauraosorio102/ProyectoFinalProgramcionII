@@ -391,7 +391,7 @@ public class GestionReservaController implements Initializable {
     private void cargarDatos() {
         if (reservaseleccionada != null) {
             dateFechaGestionReserva.setValue(reservaseleccionada.getDiasReserva().getFirst());
-            spinnerDiasReservaGestionreserva.getValueFactory().setValue((int)ChronoUnit.DAYS.between(reservaseleccionada.getDiasReserva().getFirst(), reservaseleccionada.getDiasReserva().getLast()));
+            spinnerDiasReservaGestionreserva.getValueFactory().setValue((int)ChronoUnit.DAYS.between(reservaseleccionada.getDiasReserva().getFirst(), reservaseleccionada.getDiasReserva().getLast())+1);
             spinnerHuespedesGestionreserva.getValueFactory().setValue(reservaseleccionada.getNumeroHuespedes());
         }
     }

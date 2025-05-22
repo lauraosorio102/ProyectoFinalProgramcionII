@@ -29,8 +29,9 @@ public class Oferta implements Serializable {
         LocalDate inicioDescuento = fechasdescuento.getFirst();
         LocalDate finDescuento = fechasdescuento.getLast();
         for (LocalDate fecha : fechas) {
-            if (!fecha.isBefore(inicioDescuento) && !fecha.isAfter(finDescuento)) {
+            if (fecha.isBefore(inicioDescuento) && fecha.isAfter(finDescuento)) {
                 cumple = false;
+                break;
             }
         }
         if (cumple) return precio - precio*valorDescuento/100;
