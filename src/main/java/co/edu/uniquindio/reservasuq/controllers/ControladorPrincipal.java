@@ -49,7 +49,7 @@ public class ControladorPrincipal {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Reservas UQ");
+            stage.setTitle("BookYourStay");
             stage.setScene(scene);
             stage.show();
 

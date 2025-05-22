@@ -86,6 +86,7 @@ public abstract class Alojamiento implements Serializable {
     }
 
     public void agregarServicio(String servicio) throws Exception {
+        if (servicio.isEmpty()) throw new Exception("Rellena el servicio");
         if (servicios.contains(servicio)) {
             throw new Exception("El servicio ya existe");
         }

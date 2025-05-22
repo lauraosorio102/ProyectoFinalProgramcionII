@@ -18,7 +18,7 @@ public class ReservasUqApplication extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(ReservasUqApplication.class.getResource("/co/edu/uniquindio/reservasuq/reservasUQView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("ReservasUQ");
+        stage.setTitle("BookYourStay");
         stage.setScene(scene);
         stage.show();
     }
