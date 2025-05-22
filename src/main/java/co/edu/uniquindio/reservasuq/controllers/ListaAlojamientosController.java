@@ -138,7 +138,8 @@ public class ListaAlojamientosController implements Initializable {
     @FXML
     void filtrarAction(ActionEvent event) {
         alojamientos.setAll(controladorPrincipal.getEmpresaServicio().filtrarAlojamientos(AlojamientoFactory.seleccionarTipoAlojamiento(comboTipofiltro.getValue()),combociudadfiltro.getValue(),spinnerHuespedesfiltro.getValue(),txtnombrefiltro.getText()));
-        for (Alojamiento alojamiento : alojamientos) {
+        ArrayList<Alojamiento> filtrados = controladorPrincipal.getEmpresaServicio().filtrarAlojamientos(AlojamientoFactory.seleccionarTipoAlojamiento(comboTipofiltro.getValue()),combociudadfiltro.getValue(),spinnerHuespedesfiltro.getValue(),txtnombrefiltro.getText());
+        for (Alojamiento alojamiento : filtrados) {
             if (alojamiento instanceof Habitacion) {
                 alojamientos.remove(alojamiento);
             }
