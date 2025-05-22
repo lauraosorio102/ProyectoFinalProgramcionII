@@ -40,9 +40,11 @@ public class ReservaRepository {
 
     public void agregarReserva(Reserva reserva) {
         reservas.add(reserva);
+        guardarDatos();
     }
 
     public void eliminarReserva(Reserva reserva) {
         reservas.remove(reserva);
+        guardarDatos();
     }
 }

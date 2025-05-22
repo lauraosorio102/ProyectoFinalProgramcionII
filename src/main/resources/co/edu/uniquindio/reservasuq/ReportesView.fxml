@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.reservasuq.controllers.ReportesController">
+   <children>
+      <TabPane fx:id="tabpane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="307.0" prefWidth="600.0" style="-fx-background-color: #fce060;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+          <Tab fx:id="tab1" text="Alojamientos populares por ciudad" />
+          <Tab fx:id="tab2" text="Ganancias totales por alojamiento" />
+            <Tab fx:id="tab3" text="Rentabilidad por tipo de alojamiento" />
+            <Tab fx:id="tab4" text="Ocupación porcentual por alojamiento" />
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>

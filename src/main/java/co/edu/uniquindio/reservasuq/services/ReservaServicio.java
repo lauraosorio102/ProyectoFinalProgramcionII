@@ -2,6 +2,8 @@ package co.edu.uniquindio.reservasuq.services;
 
 import co.edu.uniquindio.reservasuq.model.entities.*;
 import co.edu.uniquindio.reservasuq.model.factory.Alojamiento;
+import co.edu.uniquindio.reservasuq.model.factory.Habitacion;
+import co.edu.uniquindio.reservasuq.model.factory.Hotel;
 import co.edu.uniquindio.reservasuq.repositories.ReservaRepository;
 import co.edu.uniquindio.reservasuq.utils.EnvioEmail;
 import co.edu.uniquindio.reservasuq.utils.GeneradorQR;
@@ -10,10 +12,8 @@ import jakarta.mail.util.ByteArrayDataSource;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 public class ReservaServicio {
     private final ReservaRepository reservaRepository;
@@ -30,7 +30,7 @@ public class ReservaServicio {
         ArrayList<Reserva> reservas = listarReservas();
         ArrayList<Reserva> reservasUsuario = new ArrayList<>();
         for (Reserva reserva : reservas) {
-            if (reserva.getCliente().equals(usuario)) {
+            if (reserva.getCliente().getCorreo().equals(usuario.getCorreo())) {
                 reservasUsuario.add(reserva);
             }
         }
@@ -48,6 +48,12 @@ public class ReservaServicio {
         ArrayList<LocalDate> fechas = guardarFechas(fechainicial, diasReserva);
         boolean disponible = verificarDisponibilidad(alojamiento, fechas);
         if (!disponible) throw new Exception("Este alojamiento no esta disponibles en ese rango de fechas");
+        if (alojamiento instanceof Hotel){
+            for (Habitacion habitacion: ((Hotel) alojamiento).getHabitaciones()){
+                disponible = verificarDisponibilidad(habitacion, fechas);
+                if (!disponible)throw new Exception("Este alojamiento no esta disponibles en ese rango de fechas");
+            }
+        }
         if (numeroHuespedes > alojamiento.getCapacidadHuespedes())throw new Exception("Este alojamiento no tiene capacidad para tantas personas");
         float precio = alojamiento.calcularPrecioTotal(diasReserva);
         float preciototal = verificarDescuento(alojamiento,precio,numeroHuespedes,diasReserva,fechas,ofertas);
@@ -97,10 +103,11 @@ public class ReservaServicio {
 
     public void eliminarReserva(Reserva reserva) throws Exception {
         if (reserva == null) throw new Exception("Seleccione una reserva para cancelarla");
-        if (!reserva.getDiasReserva().getFirst().isBefore(LocalDate.now())) throw new Exception("No puede cancelar la reserva sin tiempo de anticipación");
+        if (reserva.getDiasReserva().getFirst().isBefore(LocalDate.now())) throw new Exception("No puede cancelar la reserva sin tiempo de anticipación");
         reservaRepository.eliminarReserva(reserva);
         reserva.getCliente().eliminarReserva(reserva);
         reserva.getCliente().recargarBilletera(""+reserva.getFactura().getTotal());
+        EnvioEmail.enviarNotificacion(reserva.getCliente().getCorreo(),"Cancelacion de Reserva", "Reserva:\n"+reserva.toString());
     }
 
     public Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad(){
@@ -108,6 +115,7 @@ public class ReservaServicio {
         Map<Alojamiento, Integer> alojamientos = new HashMap<>();
         for (Reserva reserva : reservas) {
             Alojamiento alojamiento = reserva.getAlojamiento();
+            if (alojamiento instanceof Habitacion) alojamiento = ((Habitacion) alojamiento).getHotel();
             alojamientos.put(alojamiento,alojamientos.getOrDefault(alojamiento,0)+1);
         }
         Map<Ciudad, Alojamiento> popularesPorCiudad = new HashMap<>();
@@ -125,4 +133,57 @@ public class ReservaServicio {
         return popularesPorCiudad;
     }
 
+    public Map<Alojamiento, Float> gananciasTotales() {
+        ArrayList<Reserva>reservas = listarReservas();
+        Map<Alojamiento, Float> alojamientos = new HashMap<>();
+        for (Reserva reserva : reservas) {
+            Alojamiento alojamiento = reserva.getAlojamiento();
+            if (alojamiento instanceof Habitacion) alojamiento = ((Habitacion) alojamiento).getHotel();
+            alojamientos.put(alojamiento, alojamientos.getOrDefault(alojamiento, 0f) + reserva.getPrecio());
+        }
+        return alojamientos;
+    }
+
+
+    public Map<Class<?>, Float> tipoAlojamientoMasRentables() {
+        ArrayList<Reserva>reservas = listarReservas();
+        Map<Class<?>, Float> alojamientos = new HashMap<>();
+        for (Reserva reserva : reservas) {
+            Alojamiento alojamiento = reserva.getAlojamiento();
+            if (alojamiento instanceof Habitacion) alojamiento = ((Habitacion) alojamiento).getHotel();
+            alojamientos.put(alojamiento.getClass(), alojamientos.getOrDefault(alojamiento.getClass(), 0f) + reserva.getPrecio());
+        }
+        return alojamientos;
+    }
+
+    public Map<Alojamiento, Float> ocupacionPorcentual(LocalDate fechainicial, LocalDate fechaFinal) {
+        ArrayList<Reserva> reservas = listarReservas();
+        Map<Alojamiento, Long> nochesReservadasPorAlojamiento = new HashMap<>();
+        Map<Alojamiento, Float> ocupacionPorcentual = new HashMap<>();
+
+        long totalNoches = ChronoUnit.DAYS.between(fechainicial, fechaFinal);
+        if (totalNoches == 0) totalNoches = 1;
+
+        for (Reserva reserva : reservas) {
+            Alojamiento alojamiento = reserva.getAlojamiento();
+            if (alojamiento instanceof Habitacion) alojamiento = ((Habitacion) alojamiento).getHotel();
+            List<LocalDate> dias = reserva.getDiasReserva();
+
+            LocalDate inicio = dias.getFirst().isBefore(fechainicial) ? fechainicial : dias.getFirst();
+            LocalDate fin = dias.getLast().isAfter(fechaFinal) ? fechaFinal : dias.getLast();
+
+            if (!inicio.isAfter(fin)) {
+                long nochesReservadas = ChronoUnit.DAYS.between(inicio, fin);
+                nochesReservadasPorAlojamiento.put(alojamiento,
+                        nochesReservadasPorAlojamiento.getOrDefault(alojamiento, 0L) + nochesReservadas);
+            }
+        }
+
+        for (Map.Entry<Alojamiento, Long> entry : nochesReservadasPorAlojamiento.entrySet()) {
+            float porcentaje = (entry.getValue() * 100f) / totalNoches;
+            ocupacionPorcentual.put(entry.getKey(), porcentaje);
+        }
+
+        return ocupacionPorcentual;
+    }
 }

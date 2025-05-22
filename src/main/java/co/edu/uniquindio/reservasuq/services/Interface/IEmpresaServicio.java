@@ -79,6 +79,12 @@ public interface IEmpresaServicio {
 
         Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad();
 
+        Map<Alojamiento, Float> gananciasTotales();
+
+        Map<Class<?>, Float> alojamientosMasRentables();
+
+        Map<Alojamiento, Float> ocupacionPorcentual(LocalDate fechainicial, LocalDate fechaFinal);
+
         //Varios
 
         void agregarResenia(Cliente cliente, String titulo,String descripcion,int valoracion, Reserva reserva)throws Exception;
@@ -106,4 +112,6 @@ public interface IEmpresaServicio {
         ArrayList<Hotel> listarHoteles();
 
         ArrayList<Cliente> listarClientes();
+
+
 }

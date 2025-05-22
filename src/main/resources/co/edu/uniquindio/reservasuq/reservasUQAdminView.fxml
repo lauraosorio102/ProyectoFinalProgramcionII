@@ -47,6 +47,8 @@
             <Tab fx:id="tab6" text="Ofertas" />
             <Tab fx:id="tab7" text="Cambiar Contraseña" />
             <Tab fx:id="tab8" text="Lista de clientes" />
+            <Tab fx:id="tab10" text="Lista de reservas" />
+            <Tab fx:id="tab9" text="Reportes" />
         </tabs>
       </TabPane>
    </children>

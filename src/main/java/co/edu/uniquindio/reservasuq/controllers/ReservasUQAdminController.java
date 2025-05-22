@@ -23,6 +23,7 @@ public class ReservasUQAdminController implements Initializable {
     private ListaAlojamientosController listaAlojamientosController;
     private ListaOfertasController listaOfertasController;
     private ListaClientesController listaClientesController;
+    private ReservaAdminController reservaAdminController;
 
     @FXML
     private Button buttonCerrarsesionReservas;
@@ -52,6 +53,12 @@ public class ReservasUQAdminController implements Initializable {
     private Tab tab8;
 
     @FXML
+    private Tab tab9;
+
+    @FXML
+    private Tab tab10;
+
+    @FXML
     private TabPane tabpane;
 
 
@@ -78,6 +85,8 @@ public class ReservasUQAdminController implements Initializable {
             listaOfertasController = (ListaOfertasController) cargarTab(tab6, "/co/edu/uniquindio/reservasuq/ListaOfertasView.fxml");
             cargarTab(tab7,"/co/edu/uniquindio/reservasuq/cambiarContraseñaView.fxml");
             listaClientesController = (ListaClientesController) cargarTab(tab8, "/co/edu/uniquindio/reservasuq/ListaClientesView.fxml");
+            cargarTab(tab9,"/co/edu/uniquindio/reservasuq/ReportesView.fxml");
+            reservaAdminController = (ReservaAdminController) cargarTab(tab10,"/co/edu/uniquindio/reservasuq/ReservaAdminView.fxml");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,6 +107,7 @@ public class ReservasUQAdminController implements Initializable {
         listaAlojamientosController.cargarAlojamientos();
         listaOfertasController.cargarOfertas();
         listaClientesController.cargarClientes();
+        reservaAdminController.cargarReservas();
     }
 
     private Initializable cargarTab(Tab tab, String fxmlFile) throws Exception {

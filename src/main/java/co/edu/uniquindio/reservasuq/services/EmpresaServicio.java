@@ -1,6 +1,5 @@
 package co.edu.uniquindio.reservasuq.services;
 
-import co.edu.uniquindio.reservasuq.controllers.ControladorPrincipal;
 import co.edu.uniquindio.reservasuq.model.entities.*;
 import co.edu.uniquindio.reservasuq.model.factory.Alojamiento;
 import co.edu.uniquindio.reservasuq.model.factory.Habitacion;
@@ -173,6 +172,18 @@ public class EmpresaServicio implements IEmpresaServicio {
 
     public Map<Ciudad, Alojamiento> alojamientosMasPopularesCiudad(){
             return reservaServicio.alojamientosMasPopularesCiudad();
+    }
+
+    public Map<Alojamiento, Float> gananciasTotales() {
+        return reservaServicio.gananciasTotales();
+    }
+
+    public Map<Class<?>, Float> alojamientosMasRentables() {
+        return reservaServicio.tipoAlojamientoMasRentables();
+    }
+
+    public Map<Alojamiento, Float> ocupacionPorcentual(LocalDate fechainicial, LocalDate fechaFinal) {
+        return reservaServicio.ocupacionPorcentual(fechainicial,fechaFinal);
     }
 
     public void agregarResenia(Cliente cliente, String titulo, String descripcion, int valoracion, Reserva reserva) throws Exception {

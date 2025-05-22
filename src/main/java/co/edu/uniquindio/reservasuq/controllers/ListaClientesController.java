@@ -50,6 +50,7 @@ public class ListaClientesController implements Initializable {
         if (clienteseleccionado != null) {
             controladorPrincipal.getEmpresaServicio().buscarCliente(clienteseleccionado.getCedula()).setEstado(false);
             clienteseleccionado = null;
+            cargarClientes();
             controladorPrincipal.crearAlerta("Cliente deshabilitado correctamente", Alert.AlertType.INFORMATION);
         }else{
             controladorPrincipal.crearAlerta("Seleccione un cliente", Alert.AlertType.INFORMATION);

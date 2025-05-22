@@ -54,7 +54,7 @@
           <Tab fx:id="tab2" closable="false" text="Gestionar reservas" />
             <Tab fx:id="tab3" closable="false" text="Gestionar reseñas" />
             <Tab fx:id="tab4" closable="false" text="Gestionar cuenta" />
-            <Tab fx:id="tab5" closable="false" text="Recargar Billetera" />
+            <Tab fx:id="tab5" closable="false" text="Billetera" />
         </tabs>
       </TabPane>
    </children>

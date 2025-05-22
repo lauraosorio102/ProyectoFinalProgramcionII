@@ -170,7 +170,7 @@ public class GestionReseñaController implements Initializable {
     }
 
     protected void cargarReservas() {
-        reservas.setAll(((Cliente) sesion.getUsuario()).getReservas());
+        reservas.setAll(controladorPrincipal.getEmpresaServicio().listarReservas(sesion.getUsuario()));
         tableAlojamientosGestionReseña.setItems(reservas);
     }
 

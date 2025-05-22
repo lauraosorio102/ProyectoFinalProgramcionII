@@ -56,6 +56,15 @@ public class Hotel extends Alojamiento implements Serializable {
         calcularPrecioPorNoche();
     }
 
+    public void actualizarHabitacion(Habitacion habitacion){
+        for (Habitacion h : habitaciones) {
+            if (h.getNombre().equals(habitacion.getNombre())) {
+                h.setResenias(habitacion.getResenias());
+                h.setServicios(habitacion.getServicios());
+            }
+        }
+    }
+
     public void calcularCapacidad(){
         int capacidad = 0;
         for (Habitacion habitacion : habitaciones) {
