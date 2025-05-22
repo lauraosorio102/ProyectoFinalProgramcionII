@@ -4,6 +4,7 @@ import co.edu.uniquindio.reservasuq.controllers.ControladorPrincipal;
 import co.edu.uniquindio.reservasuq.model.entities.Ciudad;
 import co.edu.uniquindio.reservasuq.model.entities.Cliente;
 import co.edu.uniquindio.reservasuq.model.factory.Casa;
+import co.edu.uniquindio.reservasuq.model.factory.Habitacion;
 import co.edu.uniquindio.reservasuq.model.factory.Hotel;
 import co.edu.uniquindio.reservasuq.services.EmpresaServicio;
 import javafx.scene.image.Image;
@@ -114,4 +115,140 @@ public class EmpresaServicioTest {
 
         empresaServicio.eliminarAlojamiento(empresaServicio.buscarAlojamiento(nombreValido));
     }
+
+    @Test
+    public void agregarApartamentoTest() throws Exception {
+        // Configuración inicial para crear una imagen válida de prueba
+        InputStream inputStream = getClass().getResourceAsStream("/test-image.jpg");
+        Image imagenValida = new Image(inputStream);
+
+        // Datos de prueba válidos
+        Ciudad ciudadValida = Ciudad.BOGOTA;
+        String nombreValido = "apartamento Campestre";
+        String descripcionValida = "Hermosa casa con vista a las montañas";
+        String precioValido = "150000";
+        int capacidadValida = 4;
+        String costoAdicionalValido = "50000";
+
+        // Test 1: Campos obligatorios vacíos o nulos
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento("", descripcionValida, ciudadValida, imagenValida, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería fallar por nombre vacío");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, "", ciudadValida, imagenValida, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería fallar por descripción vacía");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, null, imagenValida, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería fallar por ciudad nula");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida, null, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería fallar por imagen nula");
+
+        // Test 2: Formatos numéricos inválidos
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, "no_es_un_numero", capacidadValida, costoAdicionalValido),
+                "Debería fallar por precio no numérico");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, precioValido, capacidadValida, "no_es_un_numero"),
+                "Debería fallar por costo adicional no numérico");
+
+        // Test 3: Valores no positivos
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, "0", capacidadValida, costoAdicionalValido),
+                "Debería fallar por precio cero");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, "-100", capacidadValida, costoAdicionalValido),
+                "Debería fallar por precio negativo");
+
+        // Test 4: Caso exitoso
+        assertDoesNotThrow(
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería aceptar datos válidos");
+
+        // Test 5: Apartamento duplicada
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarApartamento(nombreValido, descripcionValida, ciudadValida,
+                        imagenValida, precioValido, capacidadValida, costoAdicionalValido),
+                "Debería fallar por casa duplicada en el mismo apartamento");
+
+        empresaServicio.eliminarAlojamiento(empresaServicio.buscarAlojamiento(nombreValido));
+    }
+
+    @Test
+    public void agregarHotelTest() throws Exception {
+        // Configuración inicial para crear una imagen válida de prueba
+        InputStream inputStream = getClass().getResourceAsStream("/test-image.jpg");
+        Image imagenValida = new Image(inputStream);
+
+        // Datos de prueba válidos
+        Ciudad ciudadValida = Ciudad.BOGOTA;
+        String nombreValido = "hotel Campestre";
+        String descripcionValida = "Hermosa casa con vista a las montañas";
+
+        // Test 1: Campos obligatorios vacíos o nulos
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHotel("", descripcionValida, ciudadValida, imagenValida),
+                "Debería fallar por nombre vacío");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHotel(nombreValido, "", ciudadValida, imagenValida),
+                "Debería fallar por descripción vacía");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHotel(nombreValido, descripcionValida, null, imagenValida),
+                "Debería fallar por ciudad nula");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHotel(nombreValido, descripcionValida, ciudadValida, null),
+                "Debería fallar por imagen nula");
+
+    }
+    @Test
+
+    public void agregarHabitacionTest() throws Exception {
+        // Configuración inicial para crear una imagen válida de prueba
+        InputStream inputStream = getClass().getResourceAsStream("/test-image.jpg");
+        Image imagenValida = new Image(inputStream);
+
+        // Datos de prueba válidos
+        Ciudad ciudadValida = Ciudad.BOGOTA;
+        String nombreValido = "hotel Campestre";
+        String nombreValido2 = "Habitacion Campestre";
+        String descripcionValida = "Hermosa casa con vista a las montañas";
+        String precioValido = "150000";
+        int capacidadValida = 4;
+
+        // Test 1: Campos obligatorios vacíos o nulos
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHabitacion((Hotel) empresaServicio.buscarAlojamiento(nombreValido) ,"", descripcionValida, precioValido,capacidadValida, imagenValida),
+                "Debería fallar por nombre vacío");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHabitacion((Hotel) empresaServicio.buscarAlojamiento(nombreValido) ,nombreValido2, "", precioValido,capacidadValida, imagenValida),
+                "Debería fallar por descripción vacía");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHabitacion((Hotel) empresaServicio.buscarAlojamiento(nombreValido) ,nombreValido2, descripcionValida, "",capacidadValida, imagenValida),
+                "Debería fallar por precio vacío");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHabitacion((Hotel) empresaServicio.buscarAlojamiento(nombreValido) ,nombreValido2, descripcionValida, precioValido,0, imagenValida),
+                "Debería fallar por capacidadhuespedes no seleccionado");
+
+        assertThrows(Exception.class,
+                () -> empresaServicio.agregarHabitacion((Hotel) empresaServicio.buscarAlojamiento(nombreValido) ,nombreValido2, descripcionValida, precioValido,capacidadValida, null),
+                "Debería fallar por foto null");
+    }
+
+
 }
