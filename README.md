@@ -161,5 +161,6 @@ Las pruebas unitarias se encuentran en `src/test/java/` y cubren los principales
 
 ## 👨‍💻 Autor
 
+**Laura Osorio** - [@lauraosorio102](https://github.com/lauraosorio102).
 **Juan David** — [@Juanda2312](https://github.com/Juanda2312)  
 Universidad del Quindío · Ingeniería de Sistemas · Programación Orientada a Objetos
